@@ -235,6 +235,30 @@
             </objects>
             <point key="canvasLocation" x="157.97101449275362" y="1524.7767857142856"/>
         </scene>
+        <!--List Users Help View Controller-->
+        <scene sceneID="iIb-V7-a6Y">
+            <objects>
+                <viewController storyboardIdentifier="listusershelp" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZyT-JD-Jjy" customClass="ListUsersHelpViewController" customModule="HelpOthers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xH6-XG-uOo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select From Below!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYf-m4-jUJ">
+                                <rect key="frame" x="43" y="100" width="328" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="YpW-JI-XjA"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vZh-0O-XWd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="958" y="1525"/>
+        </scene>
         <!--List Groceries View Controller-->
         <scene sceneID="HlK-Qj-nBQ">
             <objects>

@@ -43,6 +43,10 @@ class WantToHelpViewController: UIViewController {
             
         } else {
             print("user \(WantToHelpViewController.userName) starts helping")
+            
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "listusershelp") as! ListUsersHelpViewController
+                    self.present(newViewController, animated: true, completion: nil)
         }
     }
     
