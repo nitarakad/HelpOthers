@@ -27,6 +27,7 @@ class TimeOfDeliveryViewController: UIViewController {
     @IBOutlet weak var submitButton: UIButton!
     
     static var address = ""
+    static var TOD = ""
     
     var databaseRef: DatabaseReference!
     
@@ -82,26 +83,54 @@ class TimeOfDeliveryViewController: UIViewController {
     
     @IBAction func asapButtonClicked(_ sender: Any) {
         print("user wants groceries asap")
+        updateDatabaseWithTODOf(timeOfDelivery: "ASAP")
     }
     
     @IBAction func nextHourClicked(_ sender: Any) {
         print("user wants groceries in next hour")
+        updateDatabaseWithTODOf(timeOfDelivery: "next_hour")
     }
     
     @IBAction func nextTwoHoursClicked(_ sender: Any) {
         print("user wants groceries in next two hours")
+        updateDatabaseWithTODOf(timeOfDelivery: "next_two_hours")
     }
     
     @IBAction func nextThreeHoursClicked(_ sender: Any) {
         print("user wants groceries in next three hours")
+        updateDatabaseWithTODOf(timeOfDelivery: "next_three_hours")
     }
     
     @IBAction func nextFourHoursClicked(_ sender: Any) {
         print("user wants groceries in next four hours")
+        updateDatabaseWithTODOf(timeOfDelivery: "next_four_hours")
     }
     
     @IBAction func submitButtonClicked(_ sender: Any) {
         print("user submitted")
+    }
+    
+    func updateDatabaseWithTODOf(timeOfDelivery: String) {
+        
+        TimeOfDeliveryViewController.TOD = timeOfDelivery
+        
+        var listOfItems = ""
+        if WantHelpViewController.helpWith == "groceries" {
+            listOfItems = ListGroceriesViewController.listOfGroceries
+        } else {
+            listOfItems = ListPrescriptionViewController.listOfPrescriptions
+        }
+        
+        let addTimeOfDelivery = ["username" : WantHelpViewController.userName,
+            "want_help_with" : WantHelpViewController.helpWith,
+        "list_of_items" : listOfItems,
+        "time_of_delivery" : timeOfDelivery]
+        
+        let updateTOD = ["/wantHelp_user/\(WantHelpViewController.userUUID)" : addTimeOfDelivery]
+        
+        self.databaseRef.updateChildValues(updateTOD)
+        
+        print("updated time of delivery")
     }
 }
 
@@ -128,6 +157,26 @@ extension TimeOfDeliveryViewController: UITextFieldDelegate {
         print("user inputted address: \(address)")
         
         TimeOfDeliveryViewController.address = address
+        
+        var listOfItems = ""
+        if WantHelpViewController.helpWith == "groceries" {
+            listOfItems = ListGroceriesViewController.listOfGroceries
+        } else {
+            listOfItems = ListPrescriptionViewController.listOfPrescriptions
+        }
+        
+        let addAddress = ["username" : WantHelpViewController.userName,
+            "want_help_with" : WantHelpViewController.helpWith,
+        "list_of_items" : listOfItems,
+        "time_of_delivery" : TimeOfDeliveryViewController.TOD,
+        "address" : TimeOfDeliveryViewController.address]
+        
+        let updateAddress = ["/wantHelp_user/\(WantHelpViewController.userUUID)" : addAddress]
+        
+        self.databaseRef.updateChildValues(updateAddress)
+        
+        print("updated with address of user wanting help")
+        
         scrollView.isScrollEnabled = true
         scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         submitButton.isHidden = false
