@@ -13,6 +13,9 @@ class ListGroceriesViewController: UIViewController {
     
     @IBOutlet weak var listGroceries: UITextView!
     @IBOutlet weak var labelGroceries: UILabel!
+    @IBOutlet weak var nextButton: UIButton!
+    
+    static var listOfGroceries = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +26,12 @@ class ListGroceriesViewController: UIViewController {
         listGroceries.center.x = self.view.center.x
         listGroceries.layer.borderColor = CGColor(genericGrayGamma2_2Gray: 1.0, alpha: 1.0)
         listGroceries.layer.borderWidth = 1.0
+    }
+    
+    @IBAction func toTimeOfDeliveryScreen(_ sender: Any) {
+        ListGroceriesViewController.listOfGroceries = listGroceries.text
+        print("groceries are: \(ListGroceriesViewController.listOfGroceries)")
+        print("going to time of delivery screen")
     }
 }
 
