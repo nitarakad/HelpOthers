@@ -289,7 +289,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2to-zE-EDr">
                                 <rect key="frame" x="103" y="168" width="211" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="ASAP"/>
                                 <connections>
                                     <action selector="asapButtonClicked:" destination="Oz6-QV-kxB" eventType="touchUpInside" id="xTS-cM-n8E"/>
@@ -309,9 +309,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aoH-aT-0du">
-                                <rect key="frame" x="103" y="236" width="212" height="60"/>
+                                <rect key="frame" x="0.0" y="236" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="next hour"/>
                                 <connections>
                                     <action selector="nextHourClicked:" destination="Oz6-QV-kxB" eventType="touchUpInside" id="ZH5-HP-t3x"/>
@@ -320,9 +320,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmC-74-asD">
-                                <rect key="frame" x="103" y="304" width="211" height="60"/>
+                                <rect key="frame" x="0.0" y="304" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="next 2 hours"/>
                                 <connections>
                                     <action selector="nextTwoHoursClicked:" destination="Oz6-QV-kxB" eventType="touchUpInside" id="ZWz-Xm-UZs"/>
@@ -331,9 +331,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHC-kG-hbU">
-                                <rect key="frame" x="103" y="372" width="212" height="60"/>
+                                <rect key="frame" x="0.0" y="372" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="next 3 hours"/>
                                 <connections>
                                     <action selector="nextThreeHoursClicked:" destination="Oz6-QV-kxB" eventType="touchUpInside" id="c5Y-3v-aOP"/>
@@ -342,9 +342,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4k-hJ-oH5">
-                                <rect key="frame" x="103" y="440" width="212" height="60"/>
+                                <rect key="frame" x="0.0" y="440" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="next 4 hours"/>
                                 <connections>
                                     <action selector="nextFourHoursClicked:" destination="Oz6-QV-kxB" eventType="touchUpInside" id="HD6-wK-bLm"/>

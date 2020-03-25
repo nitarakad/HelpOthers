@@ -30,6 +30,36 @@ class TimeOfDeliveryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let df = DateFormatter()
+        
+        df.dateStyle = .none
+        df.timeStyle = .short
+        
+        var date = Date()
+        print(df.string(from: date))
+        let firstHour = df.string(from: date)
+        date = date.addingTimeInterval(3600)
+        print(df.string(from: date))
+        let secondHour = df.string(from: date)
+        let nextHourText = "\(firstHour) - \(secondHour)"
+        
+        date = date.addingTimeInterval(3600)
+        let thirdHour = df.string(from: date)
+        let twoHoursText = "\(secondHour) - \(thirdHour)"
+        
+        date = date.addingTimeInterval(3600)
+        let fourthHour = df.string(from: date)
+        let threeHoursText = "\(thirdHour) - \(fourthHour)"
+        
+        date = date.addingTimeInterval(3600)
+        let fifthHour = df.string(from: date)
+        let fourHoursText = "\(fourthHour) - \(fifthHour)"
+        
+        nextHourButton.setTitle(nextHourText, for: .normal)
+        nextTwoHoursButton.setTitle(twoHoursText, for: .normal)
+        nextThreeHoursButton.setTitle(threeHoursText, for: .normal)
+        nextFourHoursButton.setTitle(fourHoursText, for: .normal)
+        
         scrollView.addSubview(timeOfDeliveryLabel)
         scrollView.addSubview(inputAddressLabel)
         scrollView.addSubview(asapButton)
