@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class WantHelpViewController: UIViewController {
     
@@ -15,19 +16,34 @@ class WantHelpViewController: UIViewController {
     @IBOutlet weak var groceriesButton: UIButton!
     @IBOutlet weak var prescriptionButton: UIButton!
     
-    static var allNames = Array<String>()
+    static var userName = ""
+    static var userUUID = ""
+    
+    var databaseRef: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         nameInputField.delegate = self
+        
+        databaseRef = Database.database().reference()
     }
     
     @IBAction func toWantHelpGroceriesScreen(_ sender: Any) {
         print("user wants help with groceries")
+        
+        let addGroceriesHelp = ["username" : WantHelpViewController.userName,
+                                  "want_help_with" : "groceries"]
+        let updateWithGroceries = ["/wantHelp_user/\(WantHelpViewController.userUUID)" : addGroceriesHelp]
+        self.databaseRef.updateChildValues(updateWithGroceries)
     }
     
     @IBAction func toWantHelpPrescriptionScreen(_ sender: Any) {
         print("user wants help with prescription")
+        
+        let addPrescriptionHelp = ["username" : WantHelpViewController.userName,
+                                  "want_help_with" : "prescription"]
+        let updateWithPrescription = ["/wantHelp_user/\(WantHelpViewController.userUUID)" : addPrescriptionHelp]
+        self.databaseRef.updateChildValues(updateWithPrescription)
     }
 }
 
@@ -42,7 +58,14 @@ extension WantHelpViewController: UITextFieldDelegate {
             return false
         }
         
-        WantHelpViewController.allNames.append(name)
+        WantHelpViewController.userName = name
+        
+        let uuid = UUID().uuidString
+        print(uuid)
+        WantHelpViewController.userUUID = uuid
+        
+        self.databaseRef.child("wantHelp_user").child(uuid).setValue(["username" : name])
+        
         print("user inputted name")
         return true
         

@@ -15,6 +15,12 @@ target 'HelpOthers' do
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
 
+  # Add pod for storage
+  pod 'Firebase/Storage'
+
+  #Add pod for databases
+  pod 'Firebase/Database'
+
   target 'HelpOthersTests' do
     inherit! :search_paths
     # Pods for testing

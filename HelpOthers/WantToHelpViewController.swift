@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class WantToHelpViewController: UIViewController {
     
@@ -15,13 +16,19 @@ class WantToHelpViewController: UIViewController {
     @IBOutlet weak var groceriesButton: UIButton!
     @IBOutlet weak var prescriptionButton: UIButton!
     
-    static var allNames = Array<String>()
+    static var userName = ""
+    static var userUUID = ""
+    
+    var databaseRef: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         nameInputField.delegate = self
         nameInputField.center.x = self.view.center.x
         groceriesButton.center.x = self.view.center.x
+        
+        databaseRef = Database.database().reference()
+        
     }
     
     @IBAction func toWantToHelpGroceriesScreen(_ sender: Any) {
@@ -44,7 +51,14 @@ extension WantToHelpViewController: UITextFieldDelegate {
             return false
         }
         
-        WantToHelpViewController.allNames.append(name)
+        WantToHelpViewController.userName = name
+        
+        let uuid = UUID().uuidString
+        print(uuid)
+        WantToHelpViewController.userUUID = uuid
+        
+        self.databaseRef.child("wantToHelp_user").child(uuid).setValue(["username" : name])
+        
         print("user inputted name")
         return true
         
