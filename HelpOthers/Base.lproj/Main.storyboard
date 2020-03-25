@@ -84,8 +84,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gS9-nY-j8T">
-                                <rect key="frame" x="101" y="268" width="212" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gS9-nY-j8T">
+                                <rect key="frame" x="101" y="268" width="212" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -96,7 +96,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <state key="normal" title="Groceries"/>
                                 <connections>
+                                    <action selector="toWantHelpGroceriesScreen:" destination="BJe-t1-1fG" eventType="touchUpInside" id="yik-bd-gVo"/>
                                     <action selector="toWantHelpScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yXY-RU-arr"/>
+                                    <segue destination="P7R-UP-k1f" kind="presentation" id="bCp-L7-hcS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbP-cI-Fl1">
@@ -105,6 +107,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <state key="normal" title="Prescription"/>
                                 <connections>
+                                    <action selector="toWantHelpPrescriptionScreen:" destination="BJe-t1-1fG" eventType="touchUpInside" id="MhA-oU-Pe7"/>
                                     <action selector="toWantHelpScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bIX-zn-Tzc"/>
                                 </connections>
                             </button>
@@ -121,7 +124,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="tNv-cb-aPo"/>
                     <connections>
+                        <outlet property="groceriesButton" destination="opr-hg-wqR" id="0v1-bf-PfN"/>
                         <outlet property="nameInputField" destination="gS9-nY-j8T" id="lXn-rb-GGU"/>
+                        <outlet property="prescriptionButton" destination="GbP-cI-Fl1" id="QSO-Ik-ezj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qf4-i5-jh1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -150,8 +155,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z11-5a-iHX">
-                                <rect key="frame" x="101" y="268" width="212" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z11-5a-iHX">
+                                <rect key="frame" x="101" y="268" width="212" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -163,6 +168,7 @@
                                 <state key="normal" title="Groceries"/>
                                 <connections>
                                     <action selector="toWantHelpScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4GD-Iy-KDH"/>
+                                    <action selector="toWantToHelpGroceriesScreen:" destination="M1B-zz-2Cx" eventType="touchUpInside" id="AEA-9B-AHy"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZ3-o7-b1Q">
@@ -172,6 +178,7 @@
                                 <state key="normal" title="Prescription"/>
                                 <connections>
                                     <action selector="toWantHelpScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lz8-GB-VfV"/>
+                                    <action selector="toWantToHelpPrescriptionScreen:" destination="M1B-zz-2Cx" eventType="touchUpInside" id="Qte-GP-OYs"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hello There!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0zK-du-rHf">
@@ -185,10 +192,51 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="NbI-wq-x66"/>
                     </view>
+                    <connections>
+                        <outlet property="groceriesButton" destination="jA6-g9-EDI" id="c64-7K-w8d"/>
+                        <outlet property="nameInputField" destination="Z11-5a-iHX" id="A8H-1L-Drs"/>
+                        <outlet property="prescriptionButton" destination="hZ3-o7-b1Q" id="bF1-qZ-ipI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q4D-vW-iS4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="158" y="1525"/>
+            <point key="canvasLocation" x="157.97101449275362" y="1524.7767857142856"/>
+        </scene>
+        <!--List Groceries View Controller-->
+        <scene sceneID="HlK-Qj-nBQ">
+            <objects>
+                <viewController id="P7R-UP-k1f" customClass="ListGroceriesViewController" customModule="HelpOthers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gyo-tB-Ao2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="List Groceries Below:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFP-EQ-BY3">
+                                <rect key="frame" x="28" y="100" width="358" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Z46-VL-Cpj">
+                                <rect key="frame" x="28" y="168" width="358" height="381"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="9WT-8W-B4T"/>
+                    </view>
+                    <connections>
+                        <outlet property="labelGroceries" destination="fFP-EQ-BY3" id="wC4-a7-uaJ"/>
+                        <outlet property="listGroceries" destination="Z46-VL-Cpj" id="GnE-OZ-RCh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d4N-dx-ts5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="957.97101449275374" y="847.76785714285711"/>
         </scene>
     </scenes>
 </document>
