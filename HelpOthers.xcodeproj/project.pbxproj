@@ -15,6 +15,8 @@
 		229CB8C3242B14F80022250B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 229CB8C2242B14F80022250B /* Assets.xcassets */; };
 		229CB8C6242B14F80022250B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 229CB8C4242B14F80022250B /* LaunchScreen.storyboard */; };
 		229CB8D1242B14F80022250B /* HelpOthersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229CB8D0242B14F80022250B /* HelpOthersTests.swift */; };
+		229CB8DC242B164E0022250B /* WantHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229CB8DB242B164E0022250B /* WantHelpViewController.swift */; };
+		229CB8DE242B1BFB0022250B /* WantToHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229CB8DD242B1BFB0022250B /* WantToHelpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		229CB8CC242B14F80022250B /* HelpOthersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelpOthersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		229CB8D0242B14F80022250B /* HelpOthersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpOthersTests.swift; sourceTree = "<group>"; };
 		229CB8D2242B14F80022250B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		229CB8DB242B164E0022250B /* WantHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WantHelpViewController.swift; sourceTree = "<group>"; };
+		229CB8DD242B1BFB0022250B /* WantToHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WantToHelpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,8 @@
 				229CB8B6242B14F40022250B /* AppDelegate.swift */,
 				229CB8B8242B14F40022250B /* SceneDelegate.swift */,
 				229CB8BA242B14F40022250B /* ViewController.swift */,
+				229CB8DB242B164E0022250B /* WantHelpViewController.swift */,
+				229CB8DD242B1BFB0022250B /* WantToHelpViewController.swift */,
 				229CB8BC242B14F40022250B /* Main.storyboard */,
 				229CB8C2242B14F80022250B /* Assets.xcassets */,
 				229CB8C4242B14F80022250B /* LaunchScreen.storyboard */,
@@ -205,7 +211,9 @@
 			files = (
 				229CB8BB242B14F40022250B /* ViewController.swift in Sources */,
 				229CB8C1242B14F40022250B /* HelpOthers.xcdatamodeld in Sources */,
+				229CB8DE242B1BFB0022250B /* WantToHelpViewController.swift in Sources */,
 				229CB8B7242B14F40022250B /* AppDelegate.swift in Sources */,
+				229CB8DC242B164E0022250B /* WantHelpViewController.swift in Sources */,
 				229CB8B9242B14F40022250B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,7 +381,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.HelpOthers;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nitarakad.HelpOthers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -391,7 +399,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.HelpOthers;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nitarakad.HelpOthers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
