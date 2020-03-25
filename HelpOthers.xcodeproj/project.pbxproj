@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,7 @@
 		229CB8E4242B39490022250B /* TimeOfDeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229CB8E3242B39490022250B /* TimeOfDeliveryViewController.swift */; };
 		229CB8E6242BC3EB0022250B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 229CB8E5242BC3EA0022250B /* GoogleService-Info.plist */; };
 		229CB8E7242BC3EB0022250B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 229CB8E5242BC3EA0022250B /* GoogleService-Info.plist */; };
+		229CB8E9242BDDB80022250B /* ListPrescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229CB8E8242BDDB80022250B /* ListPrescriptionViewController.swift */; };
 		8798C13C85F2A8F7AD101F11 /* Pods_HelpOthers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0F94656E1D4C97FEB5B7CA /* Pods_HelpOthers.framework */; };
 		D585F5452B82D6964332FB1A /* Pods_HelpOthersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C63F4D1DA5A7D041BE1730 /* Pods_HelpOthersTests.framework */; };
 /* End PBXBuildFile section */
@@ -54,6 +55,7 @@
 		229CB8E1242B2CB60022250B /* ListGroceriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListGroceriesViewController.swift; sourceTree = "<group>"; };
 		229CB8E3242B39490022250B /* TimeOfDeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeOfDeliveryViewController.swift; sourceTree = "<group>"; };
 		229CB8E5242BC3EA0022250B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		229CB8E8242BDDB80022250B /* ListPrescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPrescriptionViewController.swift; sourceTree = "<group>"; };
 		452F1E780EA9B6227490250F /* Pods-HelpOthers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelpOthers.debug.xcconfig"; path = "Target Support Files/Pods-HelpOthers/Pods-HelpOthers.debug.xcconfig"; sourceTree = "<group>"; };
 		4F0F94656E1D4C97FEB5B7CA /* Pods_HelpOthers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HelpOthers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		579690EF08F14982A2C9B492 /* Pods-HelpOthers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelpOthers.release.xcconfig"; path = "Target Support Files/Pods-HelpOthers/Pods-HelpOthers.release.xcconfig"; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				229CB8DB242B164E0022250B /* WantHelpViewController.swift */,
 				229CB8DD242B1BFB0022250B /* WantToHelpViewController.swift */,
 				229CB8BC242B14F40022250B /* Main.storyboard */,
+				229CB8E8242BDDB80022250B /* ListPrescriptionViewController.swift */,
 				229CB8E3242B39490022250B /* TimeOfDeliveryViewController.swift */,
 				229CB8E1242B2CB60022250B /* ListGroceriesViewController.swift */,
 				229CB8C2242B14F80022250B /* Assets.xcassets */,
@@ -147,7 +150,6 @@
 				63D23B3C2BC288EEE6C0FBDD /* Pods-HelpOthersTests.debug.xcconfig */,
 				1198B1B5ADB620CBD3BFEA63 /* Pods-HelpOthersTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -321,6 +323,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				229CB8E9242BDDB80022250B /* ListPrescriptionViewController.swift in Sources */,
 				229CB8BB242B14F40022250B /* ViewController.swift in Sources */,
 				229CB8C1242B14F40022250B /* HelpOthers.xcdatamodeld in Sources */,
 				229CB8E2242B2CB60022250B /* ListGroceriesViewController.swift in Sources */,

@@ -62,6 +62,59 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="126.5625"/>
         </scene>
+        <!--List Prescription View Controller-->
+        <scene sceneID="hdD-ZT-kgT">
+            <objects>
+                <viewController id="KAE-J8-i4G" customClass="ListPrescriptionViewController" customModule="HelpOthers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qyb-bL-3Fs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="List Prescriptions Below:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZjG-Qg-gaE">
+                                <rect key="frame" x="25" y="100" width="365" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Also, list where to get from!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXa-jf-V4t">
+                                <rect key="frame" x="63" y="156" width="289" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NUF-5W-vS1">
+                                <rect key="frame" x="28" y="196" width="358" height="381"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dS-4z-FxX">
+                                <rect key="frame" x="280" y="585" width="81" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="toTimeOfDeliveryScreen:" destination="KAE-J8-i4G" eventType="touchUpInside" id="PJE-bj-EZt"/>
+                                    <segue destination="Oz6-QV-kxB" kind="presentation" id="Fk0-qs-ZsF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="TN0-sf-wp0"/>
+                    </view>
+                    <connections>
+                        <outlet property="listPrescription" destination="NUF-5W-vS1" id="eWa-0k-S3k"/>
+                        <outlet property="nextButton" destination="5dS-4z-FxX" id="4fa-Yx-0po"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yvb-yS-0MP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1384" y="127"/>
+        </scene>
         <!--Want Help View Controller-->
         <scene sceneID="MYy-EH-nS3">
             <objects>
@@ -109,6 +162,7 @@
                                 <connections>
                                     <action selector="toWantHelpPrescriptionScreen:" destination="BJe-t1-1fG" eventType="touchUpInside" id="MhA-oU-Pe7"/>
                                     <action selector="toWantHelpScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bIX-zn-Tzc"/>
+                                    <segue destination="KAE-J8-i4G" kind="presentation" id="fc5-W1-UoS"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hello There!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o3T-E3-5Wd">
@@ -361,4 +415,7 @@
             <point key="canvasLocation" x="1766.6666666666667" y="847.76785714285711"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Fk0-qs-ZsF"/>
+    </inferredMetricsTieBreakers>
 </document>
