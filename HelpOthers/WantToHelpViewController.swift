@@ -31,7 +31,19 @@ class WantToHelpViewController: UIViewController {
     }
     
     @IBAction func startHelping(_ sender: Any) {
-        print("user \(WantToHelpViewController.userName) starts helping")
+        if let name = nameInputField.text, name.count == 0 {
+            
+            print("user did not input a name")
+            
+            let alertController = UIAlertController(title: "Input name", message:
+                "Enter your name to move on to next steps!", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else {
+            print("user \(WantToHelpViewController.userName) starts helping")
+        }
     }
     
 }
