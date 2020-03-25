@@ -30,6 +30,7 @@ class TimeOfDeliveryViewController: UIViewController {
     static var TOD = ""
     
     var databaseRef: DatabaseReference!
+    var buttonColor: UIColor!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,8 @@ class TimeOfDeliveryViewController: UIViewController {
         
         df.dateStyle = .none
         df.timeStyle = .short
+        
+        buttonColor = asapButton.currentTitleColor
         
         var date = Date()
         print(df.string(from: date))
@@ -84,26 +87,56 @@ class TimeOfDeliveryViewController: UIViewController {
     @IBAction func asapButtonClicked(_ sender: Any) {
         print("user wants groceries asap")
         updateDatabaseWithTODOf(timeOfDelivery: "ASAP")
+        
+        asapButton.setTitleColor(UIColor.gray, for: .normal)
+        nextHourButton.setTitleColor(buttonColor, for: .normal)
+        nextTwoHoursButton.setTitleColor(buttonColor, for: .normal)
+        nextThreeHoursButton.setTitleColor(buttonColor, for: .normal)
+        nextFourHoursButton.setTitleColor(buttonColor, for: .normal)
     }
     
     @IBAction func nextHourClicked(_ sender: Any) {
         print("user wants groceries in next hour")
         updateDatabaseWithTODOf(timeOfDelivery: "next_hour")
+        
+        asapButton.setTitleColor(buttonColor, for: .normal)
+        nextHourButton.setTitleColor(UIColor.gray, for: .normal)
+        nextTwoHoursButton.setTitleColor(buttonColor, for: .normal)
+        nextThreeHoursButton.setTitleColor(buttonColor, for: .normal)
+        nextFourHoursButton.setTitleColor(buttonColor, for: .normal)
     }
     
     @IBAction func nextTwoHoursClicked(_ sender: Any) {
         print("user wants groceries in next two hours")
         updateDatabaseWithTODOf(timeOfDelivery: "next_two_hours")
+        
+        asapButton.setTitleColor(buttonColor, for: .normal)
+        nextHourButton.setTitleColor(buttonColor, for: .normal)
+        nextTwoHoursButton.setTitleColor(UIColor.gray, for: .normal)
+        nextThreeHoursButton.setTitleColor(buttonColor, for: .normal)
+        nextFourHoursButton.setTitleColor(buttonColor, for: .normal)
     }
     
     @IBAction func nextThreeHoursClicked(_ sender: Any) {
         print("user wants groceries in next three hours")
         updateDatabaseWithTODOf(timeOfDelivery: "next_three_hours")
+        
+        asapButton.setTitleColor(buttonColor, for: .normal)
+        nextHourButton.setTitleColor(buttonColor, for: .normal)
+        nextTwoHoursButton.setTitleColor(buttonColor, for: .normal)
+        nextThreeHoursButton.setTitleColor(UIColor.gray, for: .normal)
+        nextFourHoursButton.setTitleColor(buttonColor, for: .normal)
     }
     
     @IBAction func nextFourHoursClicked(_ sender: Any) {
         print("user wants groceries in next four hours")
         updateDatabaseWithTODOf(timeOfDelivery: "next_four_hours")
+        
+        asapButton.setTitleColor(buttonColor, for: .normal)
+        nextHourButton.setTitleColor(buttonColor, for: .normal)
+        nextTwoHoursButton.setTitleColor(buttonColor, for: .normal)
+        nextThreeHoursButton.setTitleColor(buttonColor, for: .normal)
+        nextFourHoursButton.setTitleColor(UIColor.gray, for: .normal)
     }
     
     @IBAction func submitButtonClicked(_ sender: Any) {
