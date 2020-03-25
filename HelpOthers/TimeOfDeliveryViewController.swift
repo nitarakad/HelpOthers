@@ -107,7 +107,38 @@ class TimeOfDeliveryViewController: UIViewController {
     }
     
     @IBAction func submitButtonClicked(_ sender: Any) {
-        print("user submitted")
+        if let address = addressInput.text, address.count == 0 {
+            print("user did not input an address")
+            
+            let alertController = UIAlertController(title: "Input Address", message:
+                "Enter your address for pairing!", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+            // TODO: connect with user wanting to help
+            
+            var listOfItems = ""
+            if WantHelpViewController.helpWith == "groceries" {
+                listOfItems = ListGroceriesViewController.listOfGroceries
+            } else {
+                listOfItems = ListPrescriptionViewController.listOfPrescriptions
+            }
+            
+            let addAddress = ["username" : WantHelpViewController.userName,
+                "want_help_with" : WantHelpViewController.helpWith,
+            "list_of_items" : listOfItems,
+            "time_of_delivery" : TimeOfDeliveryViewController.TOD,
+            "address" : TimeOfDeliveryViewController.address]
+            
+            let updateAddress = ["/wantHelp_user/\(WantHelpViewController.userUUID)" : addAddress]
+            
+            self.databaseRef.updateChildValues(updateAddress)
+            
+            print("updated with address of user wanting help")
+            
+            print("user submitted")
+        }
     }
     
     func updateDatabaseWithTODOf(timeOfDelivery: String) {
@@ -149,33 +180,16 @@ extension TimeOfDeliveryViewController: UITextFieldDelegate {
         
         print("user hit enter")
         
-        guard let address = textField.text, address.count > 0 else {
-            print("user didn't input address")
-            return false
-        }
+//        guard let address = textField.text, address.count > 0 else {
+//            print("user didn't input address")
+//            return false
+//        }
         
-        print("user inputted address: \(address)")
+        let addressText = textField.text!
         
-        TimeOfDeliveryViewController.address = address
+        print("user inputted address: \(addressText)")
         
-        var listOfItems = ""
-        if WantHelpViewController.helpWith == "groceries" {
-            listOfItems = ListGroceriesViewController.listOfGroceries
-        } else {
-            listOfItems = ListPrescriptionViewController.listOfPrescriptions
-        }
-        
-        let addAddress = ["username" : WantHelpViewController.userName,
-            "want_help_with" : WantHelpViewController.helpWith,
-        "list_of_items" : listOfItems,
-        "time_of_delivery" : TimeOfDeliveryViewController.TOD,
-        "address" : TimeOfDeliveryViewController.address]
-        
-        let updateAddress = ["/wantHelp_user/\(WantHelpViewController.userUUID)" : addAddress]
-        
-        self.databaseRef.updateChildValues(updateAddress)
-        
-        print("updated with address of user wanting help")
+        TimeOfDeliveryViewController.address = addressText
         
         scrollView.isScrollEnabled = true
         scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)

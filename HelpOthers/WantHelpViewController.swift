@@ -61,7 +61,7 @@ class WantHelpViewController: UIViewController {
         if let name = nameInputField.text, name.count == 0 {
             print("user did not input a name")
             
-            let alertController = UIAlertController(title: "Input name", message:
+            let alertController = UIAlertController(title: "Input Name", message:
                 "Enter your name to move on to next steps!", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
 
