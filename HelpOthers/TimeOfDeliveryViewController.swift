@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class TimeOfDeliveryViewController: UIViewController {
     
@@ -27,8 +28,12 @@ class TimeOfDeliveryViewController: UIViewController {
     
     static var address = ""
     
+    var databaseRef: DatabaseReference!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        databaseRef = Database.database().reference()
         
         let df = DateFormatter()
         

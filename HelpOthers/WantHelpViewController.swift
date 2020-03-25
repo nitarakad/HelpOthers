@@ -18,6 +18,7 @@ class WantHelpViewController: UIViewController {
     
     static var userName = ""
     static var userUUID = ""
+    static var helpWith = ""
     
     var databaseRef: DatabaseReference!
     
@@ -31,6 +32,8 @@ class WantHelpViewController: UIViewController {
     @IBAction func toWantHelpGroceriesScreen(_ sender: Any) {
         print("user wants help with groceries")
         
+        WantHelpViewController.helpWith = "groceries"
+        
         let addGroceriesHelp = ["username" : WantHelpViewController.userName,
                                   "want_help_with" : "groceries"]
         let updateWithGroceries = ["/wantHelp_user/\(WantHelpViewController.userUUID)" : addGroceriesHelp]
@@ -39,6 +42,8 @@ class WantHelpViewController: UIViewController {
     
     @IBAction func toWantHelpPrescriptionScreen(_ sender: Any) {
         print("user wants help with prescription")
+        
+        WantHelpViewController.helpWith = "prescription"
         
         let addPrescriptionHelp = ["username" : WantHelpViewController.userName,
                                   "want_help_with" : "prescription"]

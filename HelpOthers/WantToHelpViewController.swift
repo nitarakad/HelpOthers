@@ -13,8 +13,8 @@ import Firebase
 class WantToHelpViewController: UIViewController {
     
     @IBOutlet weak var nameInputField: UITextField!
-    @IBOutlet weak var groceriesButton: UIButton!
-    @IBOutlet weak var prescriptionButton: UIButton!
+    
+    @IBOutlet weak var startHelpButton: UIButton!
     
     static var userName = ""
     static var userUUID = ""
@@ -25,18 +25,13 @@ class WantToHelpViewController: UIViewController {
         super.viewDidLoad()
         nameInputField.delegate = self
         nameInputField.center.x = self.view.center.x
-        groceriesButton.center.x = self.view.center.x
         
         databaseRef = Database.database().reference()
         
     }
     
-    @IBAction func toWantToHelpGroceriesScreen(_ sender: Any) {
-        print("user wants to help with groceries")
-    }
-    
-    @IBAction func toWantToHelpPrescriptionScreen(_ sender: Any) {
-        print("user wants to help with prescription")
+    @IBAction func startHelping(_ sender: Any) {
+        print("user \(WantToHelpViewController.userName) starts helping")
     }
     
 }
