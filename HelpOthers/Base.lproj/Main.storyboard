@@ -234,6 +234,7 @@
                                     <action selector="toTimeOfDeliveryScreen:" destination="P7R-UP-k1f" eventType="touchUpInside" id="bgu-Kh-YPn"/>
                                     <action selector="toWantHelpPrescriptionScreen:" destination="BJe-t1-1fG" eventType="touchUpInside" id="8O4-dF-mGR"/>
                                     <action selector="toWantHelpScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yoz-UN-8cr"/>
+                                    <segue destination="Oz6-QV-kxB" kind="presentation" id="0qg-4B-XnO"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Also, list where to buy from!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIP-pl-HPJ">
@@ -256,6 +257,127 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d4N-dx-ts5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="957.97101449275374" y="847.76785714285711"/>
+        </scene>
+        <!--Time Of Delivery View Controller-->
+        <scene sceneID="Nqx-7a-OWA">
+            <objects>
+                <viewController id="Oz6-QV-kxB" customClass="TimeOfDeliveryViewController" customModule="HelpOthers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="acI-91-Q49">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="whS-wd-V0B">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="UZc-K1-0Gv"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="uIO-LG-GTR"/>
+                            </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time of Delivery as:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmk-8b-lhB">
+                                <rect key="frame" x="28" y="100" width="358" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Input Address Below:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uua-rQ-o9A">
+                                <rect key="frame" x="25" y="508" width="361" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2to-zE-EDr">
+                                <rect key="frame" x="103" y="168" width="211" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="ASAP"/>
+                                <connections>
+                                    <action selector="asapButtonClicked:" destination="Oz6-QV-kxB" eventType="touchUpInside" id="xTS-cM-n8E"/>
+                                    <action selector="toWantHelpPrescriptionScreen:" destination="BJe-t1-1fG" eventType="touchUpInside" id="cGt-0r-A82"/>
+                                    <action selector="toWantHelpScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bh8-5T-cvC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ln-He-Gs6">
+                                <rect key="frame" x="246" y="673" width="122" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitButtonClicked:" destination="Oz6-QV-kxB" eventType="touchUpInside" id="AIw-in-F5T"/>
+                                    <action selector="toWantHelpPrescriptionScreen:" destination="BJe-t1-1fG" eventType="touchUpInside" id="fsR-Na-2JF"/>
+                                    <action selector="toWantHelpScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D4d-54-ekG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aoH-aT-0du">
+                                <rect key="frame" x="103" y="236" width="212" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="next hour"/>
+                                <connections>
+                                    <action selector="nextHourClicked:" destination="Oz6-QV-kxB" eventType="touchUpInside" id="ZH5-HP-t3x"/>
+                                    <action selector="toWantHelpPrescriptionScreen:" destination="BJe-t1-1fG" eventType="touchUpInside" id="JQM-8O-d6A"/>
+                                    <action selector="toWantHelpScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kSa-en-Wzd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmC-74-asD">
+                                <rect key="frame" x="103" y="304" width="211" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="next 2 hours"/>
+                                <connections>
+                                    <action selector="nextTwoHoursClicked:" destination="Oz6-QV-kxB" eventType="touchUpInside" id="ZWz-Xm-UZs"/>
+                                    <action selector="toWantHelpPrescriptionScreen:" destination="BJe-t1-1fG" eventType="touchUpInside" id="p6h-YH-DsE"/>
+                                    <action selector="toWantHelpScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="clo-QV-gHQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHC-kG-hbU">
+                                <rect key="frame" x="103" y="372" width="212" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="next 3 hours"/>
+                                <connections>
+                                    <action selector="nextThreeHoursClicked:" destination="Oz6-QV-kxB" eventType="touchUpInside" id="c5Y-3v-aOP"/>
+                                    <action selector="toWantHelpPrescriptionScreen:" destination="BJe-t1-1fG" eventType="touchUpInside" id="2NR-DW-oxi"/>
+                                    <action selector="toWantHelpScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cqw-Xk-bqf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4k-hJ-oH5">
+                                <rect key="frame" x="103" y="440" width="212" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="next 4 hours"/>
+                                <connections>
+                                    <action selector="nextFourHoursClicked:" destination="Oz6-QV-kxB" eventType="touchUpInside" id="HD6-wK-bLm"/>
+                                    <action selector="toWantHelpPrescriptionScreen:" destination="BJe-t1-1fG" eventType="touchUpInside" id="Dgz-Fu-hwt"/>
+                                    <action selector="toWantHelpScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WzC-sR-3Fl"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v3m-1t-Zy1">
+                                <rect key="frame" x="37" y="579" width="331" height="89"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="PsJ-9p-HaY"/>
+                    </view>
+                    <connections>
+                        <outlet property="addressInput" destination="v3m-1t-Zy1" id="Igv-n2-R8e"/>
+                        <outlet property="asapButton" destination="2to-zE-EDr" id="3c2-xD-gTo"/>
+                        <outlet property="inputAddressLabel" destination="uua-rQ-o9A" id="7Nj-0u-2hm"/>
+                        <outlet property="nextFourHoursButton" destination="v4k-hJ-oH5" id="bXB-HE-Ku6"/>
+                        <outlet property="nextHourButton" destination="aoH-aT-0du" id="QqZ-oK-4Ei"/>
+                        <outlet property="nextThreeHoursButton" destination="gHC-kG-hbU" id="MT5-EN-3ea"/>
+                        <outlet property="nextTwoHoursButton" destination="WmC-74-asD" id="mGN-Ae-H8E"/>
+                        <outlet property="scrollView" destination="whS-wd-V0B" id="dmo-xG-5Z8"/>
+                        <outlet property="submitButton" destination="7Ln-He-Gs6" id="yoe-vk-K1K"/>
+                        <outlet property="timeOfDeliveryLabel" destination="bmk-8b-lhB" id="wWF-C0-D71"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yku-kV-dCc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1766.6666666666667" y="847.76785714285711"/>
         </scene>
     </scenes>
 </document>

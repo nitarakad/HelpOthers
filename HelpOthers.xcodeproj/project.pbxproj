@@ -18,6 +18,7 @@
 		229CB8DC242B164E0022250B /* WantHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229CB8DB242B164E0022250B /* WantHelpViewController.swift */; };
 		229CB8DE242B1BFB0022250B /* WantToHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229CB8DD242B1BFB0022250B /* WantToHelpViewController.swift */; };
 		229CB8E2242B2CB60022250B /* ListGroceriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229CB8E1242B2CB60022250B /* ListGroceriesViewController.swift */; };
+		229CB8E4242B39490022250B /* TimeOfDeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229CB8E3242B39490022250B /* TimeOfDeliveryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		229CB8DB242B164E0022250B /* WantHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WantHelpViewController.swift; sourceTree = "<group>"; };
 		229CB8DD242B1BFB0022250B /* WantToHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WantToHelpViewController.swift; sourceTree = "<group>"; };
 		229CB8E1242B2CB60022250B /* ListGroceriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListGroceriesViewController.swift; sourceTree = "<group>"; };
+		229CB8E3242B39490022250B /* TimeOfDeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeOfDeliveryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				229CB8DB242B164E0022250B /* WantHelpViewController.swift */,
 				229CB8DD242B1BFB0022250B /* WantToHelpViewController.swift */,
 				229CB8BC242B14F40022250B /* Main.storyboard */,
+				229CB8E3242B39490022250B /* TimeOfDeliveryViewController.swift */,
 				229CB8E1242B2CB60022250B /* ListGroceriesViewController.swift */,
 				229CB8C2242B14F80022250B /* Assets.xcassets */,
 				229CB8C4242B14F80022250B /* LaunchScreen.storyboard */,
@@ -216,6 +219,7 @@
 				229CB8C1242B14F40022250B /* HelpOthers.xcdatamodeld in Sources */,
 				229CB8E2242B2CB60022250B /* ListGroceriesViewController.swift in Sources */,
 				229CB8DE242B1BFB0022250B /* WantToHelpViewController.swift in Sources */,
+				229CB8E4242B39490022250B /* TimeOfDeliveryViewController.swift in Sources */,
 				229CB8B7242B14F40022250B /* AppDelegate.swift in Sources */,
 				229CB8DC242B164E0022250B /* WantHelpViewController.swift in Sources */,
 				229CB8B9242B14F40022250B /* SceneDelegate.swift in Sources */,
