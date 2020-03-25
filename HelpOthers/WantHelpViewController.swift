@@ -30,25 +30,57 @@ class WantHelpViewController: UIViewController {
     }
     
     @IBAction func toWantHelpGroceriesScreen(_ sender: Any) {
-        print("user wants help with groceries")
         
-        WantHelpViewController.helpWith = "groceries"
+        if let name = nameInputField.text, name.count == 0 {
+            print("user did not input a name")
+            
+            let alertController = UIAlertController(title: "Input name", message:
+                "Enter your name to move on to next steps!", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else {
+            print("user wants help with groceries")
         
-        let addGroceriesHelp = ["username" : WantHelpViewController.userName,
+            WantHelpViewController.helpWith = "groceries"
+        
+            let addGroceriesHelp = ["username" : WantHelpViewController.userName,
                                   "want_help_with" : "groceries"]
-        let updateWithGroceries = ["/wantHelp_user/\(WantHelpViewController.userUUID)" : addGroceriesHelp]
-        self.databaseRef.updateChildValues(updateWithGroceries)
+            let updateWithGroceries = ["/wantHelp_user/\(WantHelpViewController.userUUID)" : addGroceriesHelp]
+            self.databaseRef.updateChildValues(updateWithGroceries)
+            
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "groceries") as! ListGroceriesViewController
+                    self.present(newViewController, animated: true, completion: nil)
+        }
     }
     
     @IBAction func toWantHelpPrescriptionScreen(_ sender: Any) {
-        print("user wants help with prescription")
         
-        WantHelpViewController.helpWith = "prescription"
+        if let name = nameInputField.text, name.count == 0 {
+            print("user did not input a name")
+            
+            let alertController = UIAlertController(title: "Input name", message:
+                "Enter your name to move on to next steps!", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else {
+            print("user wants help with prescription")
         
-        let addPrescriptionHelp = ["username" : WantHelpViewController.userName,
+            WantHelpViewController.helpWith = "prescription"
+        
+            let addPrescriptionHelp = ["username" : WantHelpViewController.userName,
                                   "want_help_with" : "prescription"]
-        let updateWithPrescription = ["/wantHelp_user/\(WantHelpViewController.userUUID)" : addPrescriptionHelp]
-        self.databaseRef.updateChildValues(updateWithPrescription)
+            let updateWithPrescription = ["/wantHelp_user/\(WantHelpViewController.userUUID)" : addPrescriptionHelp]
+            self.databaseRef.updateChildValues(updateWithPrescription)
+            
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "prescription") as! ListPrescriptionViewController
+                    self.present(newViewController, animated: true, completion: nil)
+        }
     }
 }
 
