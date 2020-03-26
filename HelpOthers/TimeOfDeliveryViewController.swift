@@ -171,6 +171,11 @@ class TimeOfDeliveryViewController: UIViewController {
             print("updated with address of user wanting help")
             
             print("user submitted")
+            
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "helperpaired") as! HelperPairedViewController
+            self.present(newViewController, animated: true, completion: nil)
+            
         }
     }
     
