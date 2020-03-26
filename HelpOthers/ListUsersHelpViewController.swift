@@ -17,6 +17,8 @@ class ListUsersHelpViewController: UIViewController {
     
     var databaseRef: DatabaseReference!
     var buttonsUUID: Dictionary<UIButton, String>!
+    static var buttonSelectedName = ""
+    static var buttonSelectedUUID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +31,24 @@ class ListUsersHelpViewController: UIViewController {
     }
     
     @objc func buttonClicked(sender: UIButton!) {
-        let name = sender.titleLabel?.text
-        print(name)
-        print("lit")
-        print(buttonsUUID[sender])
+        guard let name = sender.titleLabel?.text else {
+            print("no name")
+            return
+        }
+        
+        ListUsersHelpViewController.buttonSelectedName = name
+        
+        guard let uuid = buttonsUUID[sender] else {
+            print("no uuid")
+            return
+        }
+        
+        ListUsersHelpViewController.buttonSelectedUUID = uuid
+        print("selected user to help")
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "selecteduser") as! SelectedUserViewController
+        self.present(newViewController, animated: true, completion: nil)
     }
     
     func retrieveAndShowUsers() {
