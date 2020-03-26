@@ -33,8 +33,11 @@ class HelperPairedLoadViewController: UIViewController {
             if !snapshot.exists() {
                 print("doesn't exist --> user hasnt been paired yet")
             } else {
-                self.timer.invalidate()
                 print("does exist --> user has been paired")
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let newViewController = storyBoard.instantiateViewController(withIdentifier: "helperpaired") as! HelperPairedViewController
+                self.present(newViewController, animated: true, completion: nil)
+                self.timer.invalidate()
             }
         }
     }

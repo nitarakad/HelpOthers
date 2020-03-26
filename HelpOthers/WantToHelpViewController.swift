@@ -42,6 +42,17 @@ class WantToHelpViewController: UIViewController {
             self.present(alertController, animated: true, completion: nil)
             
         } else {
+            
+            if let name = nameInputField.text, WantToHelpViewController.userUUID == "" && name.count > 0 {
+                WantToHelpViewController.userName = name
+                
+                let uuid = UUID().uuidString
+                print(uuid)
+                WantToHelpViewController.userUUID = uuid
+                
+                self.databaseRef.child("wantToHelp_user").child(uuid).setValue(["username" : WantToHelpViewController.userName])
+            }
+            
             print("user \(WantToHelpViewController.userName) starts helping")
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
