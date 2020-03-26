@@ -117,11 +117,11 @@ class ListUsersHelpViewController: UIViewController {
                 addresses[currUID] = address
             }
             
-            print(usernames)
-            print(helpWiths)
-            print(listItems)
-            print(timeOfDeliveries)
-            print(addresses)
+            //print(usernames)
+            //print(helpWiths)
+            //print(listItems)
+            //print(timeOfDeliveries)
+            //print(addresses)
             
             var currY = self.scrollView.bounds.origin.y + 50
             let currX = self.scrollView.bounds.minX

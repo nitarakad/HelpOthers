@@ -19,6 +19,8 @@ class SelectedUserViewController: UIViewController {
     
     var databaseRef: DatabaseReference!
     
+    static var currentStatus = "none"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,31 +45,25 @@ class SelectedUserViewController: UIViewController {
         itemsTextView.font = UIFont.systemFont(ofSize: 30)
         self.view.addSubview(itemsTextView)
         
-        databaseRef.observe(.value) { (snapshot) in
+        let observeDB = databaseRef.child("wantHelp_user").child(ListUsersHelpViewController.buttonSelectedUUID).observeSingleEvent(of: .value) { (snapshot) in
             
-            let allUsers = snapshot.value as? [String: AnyObject] ?? [:]
-            let usersWantHelp = allUsers["wantHelp_user"] as! Dictionary<String, Dictionary<String, String>>
+            let allInfo = snapshot.value as! Dictionary<String, String>
             
-            guard let selectedUser = usersWantHelp[ListUsersHelpViewController.buttonSelectedUUID] else {
-                print("selected user not found")
-                return
-            }
-            
-            guard let listOfItems = selectedUser["list_of_items"] else {
+            guard let listOfItems = allInfo["list_of_items"] else {
                 print("no list found")
                 return
             }
             
-            print(listOfItems)
-            
+            print("**items in textview now displayed**")
             self.itemsTextView.text = listOfItems
         }
         
     }
     
     @IBAction func retrievedButtonClicked(_ sender: Any) {
-        
-        
+        SelectedUserViewController.currentStatus = "retrieved"
+        updateWantToHelpUserDatabaseWithRetrieved()
+        updateHelpUserDatabaseWithRetrieved()
         print("items retreived!")
     }
     
@@ -75,48 +71,73 @@ class SelectedUserViewController: UIViewController {
         print("item at doorstep!")
     }
     
+    func updateWantToHelpUserDatabaseWithRetrieved() {
+        let addStatus = ["username" : WantToHelpViewController.userName,
+                         "user_selected_uuid" : ListUsersHelpViewController.buttonSelectedUUID,
+                         "status" : SelectedUserViewController.currentStatus]
+        
+        let updateWithStatus = ["/wantToHelp_user/\(WantToHelpViewController.userUUID)" : addStatus]
+        
+        self.databaseRef.updateChildValues(updateWithStatus)
+        
+        print("**updated database with status (WANT TO HELP USER)**")
+    }
+    
+    func updateHelpUserDatabaseWithRetrieved() {
+        let uuid = ListUsersHelpViewController.buttonSelectedUUID
+        print(uuid)
+        let observeData = databaseRef.child("wantHelp_user").child(uuid).child("status").observeSingleEvent(of: .value) { (snapshot) in
+            let status = snapshot.value as? String ?? ""
+            if status == "" {
+                print("no status found")
+                return
+            }
+            
+            self.databaseRef.child("wantHelp_user").child(uuid).updateChildValues(["status" : SelectedUserViewController.currentStatus])
+            print("**updated database with user selected to help (WANT HELP USER)**")
+        }
+    }
+    
     func updateWantToHelpUserDatabaseWithUserSelected() {
         let addUserSelected = ["username" : WantToHelpViewController.userName,
-                               "user_selected_uuid" : ListUsersHelpViewController.buttonSelectedUUID]
+                               "user_selected_uuid" : ListUsersHelpViewController.buttonSelectedUUID,
+                               "status" : SelectedUserViewController.currentStatus]
         
         let updateWithUserSelected = ["/wantToHelp_user/\(WantToHelpViewController.userUUID)" : addUserSelected]
         
         self.databaseRef.updateChildValues(updateWithUserSelected)
         
-        print("updated database with user selected to help (user who is helping)")
+        print("**updated database with user selected to help (WANT TO HELP USER)**")
     }
     
     func updateHelpUserDatabaseWithHelperPaired() {
         let uuid = ListUsersHelpViewController.buttonSelectedUUID
         
-        databaseRef.observe(.value) { (snapshot) in
-        
-            let allUsers = snapshot.value as? [String: AnyObject] ?? [:]
-            let usersWantHelp = allUsers["wantHelp_user"] as! Dictionary<String, Dictionary<String, String>>
-        
-            guard let selectedUser = usersWantHelp[uuid],
-                    let username = selectedUser["username"],
-                        let helpWith = selectedUser["want_help_with"],
-                            let timeOfDelivery = selectedUser["time_of_delivery"],
-                                let listOfItems = selectedUser["list_of_items"],
-                                    let address = selectedUser["address"] else {
+        let observeDB = databaseRef.child("wantHelp_user").child(uuid).observeSingleEvent(of: .value) { (snapshot) in
+            
+            let allInfo = snapshot.value as! Dictionary<String, String>
+            
+            guard let username = allInfo["username"],
+                        let helpWith = allInfo["want_help_with"],
+                            let timeOfDelivery = allInfo["time_of_delivery"],
+                                let listOfItems = allInfo["list_of_items"],
+                                    let address = allInfo["address"] else {
                 print("selected user not found")
                 return
             }
-            
             let addHelperPaired = ["username" : username,
                                     "want_help_with" : helpWith,
                                     "list_of_items" : listOfItems,
                                     "time_of_delivery" : timeOfDelivery,
                                     "address" : address,
-                                    "helper_paired_uuid" : WantToHelpViewController.userUUID]
+                                    "helper_paired_uuid" : WantToHelpViewController.userUUID,
+                                    "status" : SelectedUserViewController.currentStatus]
             
             let updateWithHelperPaired = ["/wantHelp_user/\(uuid)" : addHelperPaired]
-            
+
             self.databaseRef.updateChildValues(updateWithHelperPaired)
-            
-            print("updated database with helper paired with (user who wants helped)")
-            
+
+            print("**updated database with helper paired with (WANT HELP USER)**")
             
         }
         
