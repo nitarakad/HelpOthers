@@ -14,6 +14,7 @@ class HelperPairedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
     }
     
 }

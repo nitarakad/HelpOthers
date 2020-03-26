@@ -25,6 +25,7 @@
 		229CB8EB242BFFED0022250B /* ListUsersHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229CB8EA242BFFED0022250B /* ListUsersHelpViewController.swift */; };
 		229CB8ED242C6DBB0022250B /* SelectedUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229CB8EC242C6DBB0022250B /* SelectedUserViewController.swift */; };
 		22CACEAE242D43C100B2D947 /* HelperPairedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CACEAD242D43C100B2D947 /* HelperPairedViewController.swift */; };
+		22CACEB0242D51F200B2D947 /* HelperPairedLoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CACEAF242D51F200B2D947 /* HelperPairedLoadViewController.swift */; };
 		8798C13C85F2A8F7AD101F11 /* Pods_HelpOthers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0F94656E1D4C97FEB5B7CA /* Pods_HelpOthers.framework */; };
 		D585F5452B82D6964332FB1A /* Pods_HelpOthersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C63F4D1DA5A7D041BE1730 /* Pods_HelpOthersTests.framework */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,7 @@
 		229CB8EA242BFFED0022250B /* ListUsersHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUsersHelpViewController.swift; sourceTree = "<group>"; };
 		229CB8EC242C6DBB0022250B /* SelectedUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedUserViewController.swift; sourceTree = "<group>"; };
 		22CACEAD242D43C100B2D947 /* HelperPairedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperPairedViewController.swift; sourceTree = "<group>"; };
+		22CACEAF242D51F200B2D947 /* HelperPairedLoadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperPairedLoadViewController.swift; sourceTree = "<group>"; };
 		452F1E780EA9B6227490250F /* Pods-HelpOthers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelpOthers.debug.xcconfig"; path = "Target Support Files/Pods-HelpOthers/Pods-HelpOthers.debug.xcconfig"; sourceTree = "<group>"; };
 		4F0F94656E1D4C97FEB5B7CA /* Pods_HelpOthers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HelpOthers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		579690EF08F14982A2C9B492 /* Pods-HelpOthers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelpOthers.release.xcconfig"; path = "Target Support Files/Pods-HelpOthers/Pods-HelpOthers.release.xcconfig"; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				229CB8DB242B164E0022250B /* WantHelpViewController.swift */,
 				229CB8DD242B1BFB0022250B /* WantToHelpViewController.swift */,
 				22CACEAD242D43C100B2D947 /* HelperPairedViewController.swift */,
+				22CACEAF242D51F200B2D947 /* HelperPairedLoadViewController.swift */,
 				229CB8EA242BFFED0022250B /* ListUsersHelpViewController.swift */,
 				229CB8EC242C6DBB0022250B /* SelectedUserViewController.swift */,
 				229CB8BC242B14F40022250B /* Main.storyboard */,
@@ -344,6 +347,7 @@
 				229CB8DC242B164E0022250B /* WantHelpViewController.swift in Sources */,
 				22CACEAE242D43C100B2D947 /* HelperPairedViewController.swift in Sources */,
 				229CB8B9242B14F40022250B /* SceneDelegate.swift in Sources */,
+				22CACEB0242D51F200B2D947 /* HelperPairedLoadViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

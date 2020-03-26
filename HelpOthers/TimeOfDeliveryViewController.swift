@@ -173,7 +173,7 @@ class TimeOfDeliveryViewController: UIViewController {
             print("user submitted")
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "helperpaired") as! HelperPairedViewController
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "helperpairedload") as! HelperPairedLoadViewController
             self.present(newViewController, animated: true, completion: nil)
             
         }
