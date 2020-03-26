@@ -16,11 +16,26 @@ class ListUsersHelpViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
     var databaseRef: DatabaseReference!
+    var buttonsUUID: Dictionary<UIButton, String>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         databaseRef = Database.database().reference()
+        
+        buttonsUUID = Dictionary<UIButton, String>()
+        
+        retrieveAndShowUsers()
+    }
+    
+    @objc func buttonClicked(sender: UIButton!) {
+        let name = sender.titleLabel?.text
+        print(name)
+        print("lit")
+        print(buttonsUUID[sender])
+    }
+    
+    func retrieveAndShowUsers() {
         
         let usersWantHelp = databaseRef.observe(.value) { (snapshot) in
             let allUsers = snapshot.value as? [String: AnyObject] ?? [:]
@@ -86,7 +101,6 @@ class ListUsersHelpViewController: UIViewController {
                 addresses[currUID] = address
             }
             
-            
             print(usernames)
             print(helpWiths)
             print(listItems)
@@ -103,13 +117,16 @@ class ListUsersHelpViewController: UIViewController {
                 currButton.setTitle("\(usernames[uid]!): ", for: .normal)
                 currButton.setTitleColor(UIColor.systemBlue, for: .normal)
                 currButton.titleLabel?.font = UIFont.systemFont(ofSize: 40)
+                currButton.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
+                self.buttonsUUID[currButton] = uid
+                
                 self.scrollView.addSubview(currButton)
                 
                 currY = currY + 70
                 let helpWithLabel = UILabel()
                 helpWithLabel.frame = CGRect(x: currX, y: currY, width: self.view.frame.width, height: 60)
                 helpWithLabel.text = "Help With: \(helpWiths[uid]!)"
-                helpWithLabel.textColor = UIColor.systemPurple
+                helpWithLabel.textColor = UIColor.systemGray
                 helpWithLabel.font = UIFont.systemFont(ofSize: 30)
                 helpWithLabel.center.x = self.scrollView.center.x
                 self.scrollView.addSubview(helpWithLabel)
@@ -118,7 +135,7 @@ class ListUsersHelpViewController: UIViewController {
                 let TODLabel = UILabel()
                 TODLabel.frame = CGRect(x: currX, y: currY, width: self.view.frame.width, height: 60)
                 TODLabel.text = "Time: \(timeOfDeliveries[uid]!)"
-                TODLabel.textColor = UIColor.systemPurple
+                TODLabel.textColor = UIColor.systemGray
                 TODLabel.font = UIFont.systemFont(ofSize: 30)
                 TODLabel.center.x = self.scrollView.center.x
                 self.scrollView.addSubview(TODLabel)
@@ -129,7 +146,7 @@ class ListUsersHelpViewController: UIViewController {
                 addressLabel.text = "Address: \(addresses[uid]!)"
                 addressLabel.lineBreakMode = .byWordWrapping
                 addressLabel.numberOfLines = 0
-                addressLabel.textColor = UIColor.systemPurple
+                addressLabel.textColor = UIColor.systemGray
                 addressLabel.font = UIFont.systemFont(ofSize: 30)
                 addressLabel.center.x = self.scrollView.center.x
                 self.scrollView.addSubview(addressLabel)
@@ -141,6 +158,5 @@ class ListUsersHelpViewController: UIViewController {
             self.view.addSubview(self.scrollView)
             
         }
-        
     }
 }
