@@ -12,6 +12,9 @@ import Firebase
 
 class ListUsersHelpViewController: UIViewController {
     
+    @IBOutlet weak var listLabel: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     var databaseRef: DatabaseReference!
     
     override func viewDidLoad() {
@@ -61,18 +64,81 @@ class ListUsersHelpViewController: UIViewController {
                     return
                 }
                 
+                var TOD = ""
+                if timeOfDelivery == "ASAP" {
+                    TOD = "ASAP"
+                } else if timeOfDelivery == "next_hour" {
+                    TOD = "In 1 hour"
+                } else if timeOfDelivery == "next_two_hours" {
+                    TOD = "In 2 hours"
+                } else if timeOfDelivery == "next_three_hours" {
+                    TOD = "In 3 hours"
+                } else if timeOfDelivery == "next_four_hours" {
+                    TOD = "In 4 hours"
+                } else {
+                    TOD = "unknown"
+                }
+                
                 usernames[currUID] = username
                 helpWiths[currUID] = wantHelpWith
                 listItems[currUID] = listOfItems
-                timeOfDeliveries[currUID] = timeOfDelivery
+                timeOfDeliveries[currUID] = TOD
                 addresses[currUID] = address
             }
+            
             
             print(usernames)
             print(helpWiths)
             print(listItems)
             print(timeOfDeliveries)
             print(addresses)
+            
+            var currY = self.scrollView.bounds.origin.y + 50
+            let currX = self.scrollView.bounds.minX
+            
+            for uid in userUIDs {
+                
+                let currButton = UIButton()
+                currButton.frame = CGRect(x: currX, y: currY, width: self.view.frame.width, height: 60)
+                currButton.setTitle("\(usernames[uid]!): ", for: .normal)
+                currButton.setTitleColor(UIColor.systemBlue, for: .normal)
+                currButton.titleLabel?.font = UIFont.systemFont(ofSize: 40)
+                self.scrollView.addSubview(currButton)
+                
+                currY = currY + 70
+                let helpWithLabel = UILabel()
+                helpWithLabel.frame = CGRect(x: currX, y: currY, width: self.view.frame.width, height: 60)
+                helpWithLabel.text = "Help With: \(helpWiths[uid]!)"
+                helpWithLabel.textColor = UIColor.systemPurple
+                helpWithLabel.font = UIFont.systemFont(ofSize: 30)
+                helpWithLabel.center.x = self.scrollView.center.x
+                self.scrollView.addSubview(helpWithLabel)
+                
+                currY = currY + 70
+                let TODLabel = UILabel()
+                TODLabel.frame = CGRect(x: currX, y: currY, width: self.view.frame.width, height: 60)
+                TODLabel.text = "Time: \(timeOfDeliveries[uid]!)"
+                TODLabel.textColor = UIColor.systemPurple
+                TODLabel.font = UIFont.systemFont(ofSize: 30)
+                TODLabel.center.x = self.scrollView.center.x
+                self.scrollView.addSubview(TODLabel)
+                
+                currY = currY + 70
+                let addressLabel = UILabel()
+                addressLabel.frame = CGRect(x: currX, y: currY, width: self.view.frame.width, height: 100)
+                addressLabel.text = "Address: \(addresses[uid]!)"
+                addressLabel.lineBreakMode = .byWordWrapping
+                addressLabel.numberOfLines = 0
+                addressLabel.textColor = UIColor.systemPurple
+                addressLabel.font = UIFont.systemFont(ofSize: 30)
+                addressLabel.center.x = self.scrollView.center.x
+                self.scrollView.addSubview(addressLabel)
+                
+                currY = currY + 100
+            }
+            
+            self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: currY + 100)
+            self.view.addSubview(self.scrollView)
             
         }
         

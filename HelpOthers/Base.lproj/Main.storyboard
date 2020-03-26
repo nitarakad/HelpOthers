@@ -250,14 +250,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xR7-wQ-QOJ">
+                                <rect key="frame" x="0.0" y="188" width="414" height="708"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="dbp-CZ-HSX"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="lCq-Lk-Stl"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="YpW-JI-XjA"/>
                     </view>
+                    <connections>
+                        <outlet property="ListLabel" destination="AYf-m4-jUJ" id="ZHM-wR-LHp"/>
+                        <outlet property="scrollView" destination="xR7-wQ-QOJ" id="Apt-XW-SF1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vZh-0O-XWd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="958" y="1525"/>
+            <point key="canvasLocation" x="957.97101449275374" y="1524.7767857142856"/>
         </scene>
         <!--List Groceries View Controller-->
         <scene sceneID="HlK-Qj-nBQ">
