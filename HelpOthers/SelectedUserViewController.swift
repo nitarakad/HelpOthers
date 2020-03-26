@@ -68,7 +68,37 @@ class SelectedUserViewController: UIViewController {
     }
     
     @IBAction func readyButtonClicked(_ sender: Any) {
+        SelectedUserViewController.currentStatus = "delivered"
+        updateWantToHelpUserDatabaseWithDelivered()
+        updateWantHelpUserDatabaseWithDelivered()
         print("item at doorstep!")
+    }
+    
+    func updateWantToHelpUserDatabaseWithDelivered() {
+        let addStatus = ["username" : WantToHelpViewController.userName,
+                         "user_selected_uuid" : ListUsersHelpViewController.buttonSelectedUUID,
+                         "status" : SelectedUserViewController.currentStatus]
+        
+        let updateWithStatus = ["/wantToHelp_user/\(WantToHelpViewController.userUUID)" : addStatus]
+        
+        self.databaseRef.updateChildValues(updateWithStatus)
+        
+        print("**updated database with status delivered (WANT TO HELP USER)**")
+    }
+    
+    func updateWantHelpUserDatabaseWithDelivered() {
+        let uuid = ListUsersHelpViewController.buttonSelectedUUID
+               print(uuid)
+               let observeData = databaseRef.child("wantHelp_user").child(uuid).child("status").observeSingleEvent(of: .value) { (snapshot) in
+                   let status = snapshot.value as? String ?? ""
+                   if status == "" {
+                       print("no status found")
+                       return
+                   }
+                   
+                   self.databaseRef.child("wantHelp_user").child(uuid).updateChildValues(["status" : SelectedUserViewController.currentStatus])
+                   print("**updated database with status delivered (WANT HELP USER)**")
+               }
     }
     
     func updateWantToHelpUserDatabaseWithRetrieved() {
@@ -80,7 +110,7 @@ class SelectedUserViewController: UIViewController {
         
         self.databaseRef.updateChildValues(updateWithStatus)
         
-        print("**updated database with status (WANT TO HELP USER)**")
+        print("**updated database with status retrieved (WANT TO HELP USER)**")
     }
     
     func updateHelpUserDatabaseWithRetrieved() {
@@ -94,7 +124,7 @@ class SelectedUserViewController: UIViewController {
             }
             
             self.databaseRef.child("wantHelp_user").child(uuid).updateChildValues(["status" : SelectedUserViewController.currentStatus])
-            print("**updated database with user selected to help (WANT HELP USER)**")
+            print("**updated database with status retrieved (WANT HELP USER)**")
         }
     }
     
