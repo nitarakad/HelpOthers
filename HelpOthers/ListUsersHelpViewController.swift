@@ -126,50 +126,58 @@ class ListUsersHelpViewController: UIViewController {
             var currY = self.scrollView.bounds.origin.y + 50
             let currX = self.scrollView.bounds.minX
             
+            let currentlyBeingHelpedDict = allUsers["users_being_helped"] as! Dictionary<String, Dictionary<String,String>>
+            var currentlyBeingHelpedUUID = [String]()
+            for user in currentlyBeingHelpedDict {
+                let uid = user.key
+                currentlyBeingHelpedUUID.append(uid)
+            }
+            
             for uid in userUIDs {
                 
                 // TODO: check if uid is already being helped --> don't want to display it
+                if (!currentlyBeingHelpedUUID.contains(uid)) {
+                    let currButton = UIButton()
+                    currButton.frame = CGRect(x: currX, y: currY, width: self.view.frame.width, height: 60)
+                    currButton.setTitle("\(usernames[uid]!): ", for: .normal)
+                    currButton.setTitleColor(UIColor.systemBlue, for: .normal)
+                    currButton.titleLabel?.font = UIFont.systemFont(ofSize: 40)
+                    currButton.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
+                    self.buttonsUUID[currButton] = uid
                 
-                let currButton = UIButton()
-                currButton.frame = CGRect(x: currX, y: currY, width: self.view.frame.width, height: 60)
-                currButton.setTitle("\(usernames[uid]!): ", for: .normal)
-                currButton.setTitleColor(UIColor.systemBlue, for: .normal)
-                currButton.titleLabel?.font = UIFont.systemFont(ofSize: 40)
-                currButton.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
-                self.buttonsUUID[currButton] = uid
+                    self.scrollView.addSubview(currButton)
                 
-                self.scrollView.addSubview(currButton)
+                    currY = currY + 70
+                    let helpWithLabel = UILabel()
+                    helpWithLabel.frame = CGRect(x: currX, y: currY, width: self.view.frame.width, height: 60)
+                    helpWithLabel.text = "Help With: \(helpWiths[uid]!)"
+                    helpWithLabel.textColor = UIColor.systemGray
+                    helpWithLabel.font = UIFont.systemFont(ofSize: 30)
+                    helpWithLabel.center.x = self.scrollView.center.x
+                    self.scrollView.addSubview(helpWithLabel)
                 
-                currY = currY + 70
-                let helpWithLabel = UILabel()
-                helpWithLabel.frame = CGRect(x: currX, y: currY, width: self.view.frame.width, height: 60)
-                helpWithLabel.text = "Help With: \(helpWiths[uid]!)"
-                helpWithLabel.textColor = UIColor.systemGray
-                helpWithLabel.font = UIFont.systemFont(ofSize: 30)
-                helpWithLabel.center.x = self.scrollView.center.x
-                self.scrollView.addSubview(helpWithLabel)
+                    currY = currY + 70
+                    let TODLabel = UILabel()
+                    TODLabel.frame = CGRect(x: currX, y: currY, width: self.view.frame.width, height: 60)
+                    TODLabel.text = "Time: \(timeOfDeliveries[uid]!)"
+                    TODLabel.textColor = UIColor.systemGray
+                    TODLabel.font = UIFont.systemFont(ofSize: 30)
+                    TODLabel.center.x = self.scrollView.center.x
+                    self.scrollView.addSubview(TODLabel)
                 
-                currY = currY + 70
-                let TODLabel = UILabel()
-                TODLabel.frame = CGRect(x: currX, y: currY, width: self.view.frame.width, height: 60)
-                TODLabel.text = "Time: \(timeOfDeliveries[uid]!)"
-                TODLabel.textColor = UIColor.systemGray
-                TODLabel.font = UIFont.systemFont(ofSize: 30)
-                TODLabel.center.x = self.scrollView.center.x
-                self.scrollView.addSubview(TODLabel)
+                    currY = currY + 70
+                    let addressLabel = UILabel()
+                    addressLabel.frame = CGRect(x: currX, y: currY, width: self.view.frame.width, height: 100)
+                    addressLabel.text = "Address: \(addresses[uid]!)"
+                    addressLabel.lineBreakMode = .byWordWrapping
+                    addressLabel.numberOfLines = 0
+                    addressLabel.textColor = UIColor.systemGray
+                    addressLabel.font = UIFont.systemFont(ofSize: 30)
+                    addressLabel.center.x = self.scrollView.center.x
+                    self.scrollView.addSubview(addressLabel)
                 
-                currY = currY + 70
-                let addressLabel = UILabel()
-                addressLabel.frame = CGRect(x: currX, y: currY, width: self.view.frame.width, height: 100)
-                addressLabel.text = "Address: \(addresses[uid]!)"
-                addressLabel.lineBreakMode = .byWordWrapping
-                addressLabel.numberOfLines = 0
-                addressLabel.textColor = UIColor.systemGray
-                addressLabel.font = UIFont.systemFont(ofSize: 30)
-                addressLabel.center.x = self.scrollView.center.x
-                self.scrollView.addSubview(addressLabel)
-                
-                currY = currY + 100
+                    currY = currY + 100
+                }
             }
             
             self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: currY + 100)

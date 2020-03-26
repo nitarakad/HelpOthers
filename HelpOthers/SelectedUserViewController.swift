@@ -149,6 +149,7 @@ class SelectedUserViewController: UIViewController {
         let uuid = ListUsersHelpViewController.buttonSelectedUUID
         
         //TODO: add above UUID to another branch of database to know that they are being helped
+        databaseRef.child("users_being_helped").child(uuid).setValue(["helped" : "yes"])
         
         let observeDB = databaseRef.child("wantHelp_user").child(uuid).observeSingleEvent(of: .value) { (snapshot) in
             
