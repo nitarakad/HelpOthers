@@ -24,6 +24,9 @@ class SelectedUserViewController: UIViewController {
         
         databaseRef = Database.database().reference()
         
+        updateWantToHelpUserDatabaseWithUserSelected()
+        updateHelpUserDatabaseWithHelperPaired()
+        
         let nameWithColon = ListUsersHelpViewController.buttonSelectedName
         let lengthJustName = nameWithColon.count - 2
         let index = nameWithColon.index(nameWithColon.startIndex, offsetBy: lengthJustName)
@@ -40,7 +43,7 @@ class SelectedUserViewController: UIViewController {
         itemsTextView.font = UIFont.systemFont(ofSize: 30)
         self.view.addSubview(itemsTextView)
         
-        let usersWantHelp = databaseRef.observe(.value) { (snapshot) in
+        databaseRef.observe(.value) { (snapshot) in
             
             let allUsers = snapshot.value as? [String: AnyObject] ?? [:]
             let usersWantHelp = allUsers["wantHelp_user"] as! Dictionary<String, Dictionary<String, String>>
@@ -63,11 +66,60 @@ class SelectedUserViewController: UIViewController {
     }
     
     @IBAction func retrievedButtonClicked(_ sender: Any) {
+        
+        
         print("items retreived!")
     }
     
     @IBAction func readyButtonClicked(_ sender: Any) {
         print("item at doorstep!")
+    }
+    
+    func updateWantToHelpUserDatabaseWithUserSelected() {
+        let addUserSelected = ["username" : WantToHelpViewController.userName,
+                               "user_selected_uuid" : ListUsersHelpViewController.buttonSelectedUUID]
+        
+        let updateWithUserSelected = ["/wantToHelp_user/\(WantToHelpViewController.userUUID)" : addUserSelected]
+        
+        self.databaseRef.updateChildValues(updateWithUserSelected)
+        
+        print("updated database with user selected to help (user who is helping)")
+    }
+    
+    func updateHelpUserDatabaseWithHelperPaired() {
+        let uuid = ListUsersHelpViewController.buttonSelectedUUID
+        
+        databaseRef.observe(.value) { (snapshot) in
+        
+            let allUsers = snapshot.value as? [String: AnyObject] ?? [:]
+            let usersWantHelp = allUsers["wantHelp_user"] as! Dictionary<String, Dictionary<String, String>>
+        
+            guard let selectedUser = usersWantHelp[uuid],
+                    let username = selectedUser["username"],
+                        let helpWith = selectedUser["want_help_with"],
+                            let timeOfDelivery = selectedUser["time_of_delivery"],
+                                let listOfItems = selectedUser["list_of_items"],
+                                    let address = selectedUser["address"] else {
+                print("selected user not found")
+                return
+            }
+            
+            let addHelperPaired = ["username" : username,
+                                    "want_help_with" : helpWith,
+                                    "list_of_items" : listOfItems,
+                                    "time_of_delivery" : timeOfDelivery,
+                                    "address" : address,
+                                    "helper_paired_uuid" : WantToHelpViewController.userUUID]
+            
+            let updateWithHelperPaired = ["/wantHelp_user/\(uuid)" : addHelperPaired]
+            
+            self.databaseRef.updateChildValues(updateWithHelperPaired)
+            
+            print("updated database with helper paired with (user who wants helped)")
+            
+            
+        }
+        
     }
     
 }
