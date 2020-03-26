@@ -29,6 +29,8 @@ class SelectedUserViewController: UIViewController {
         updateWantToHelpUserDatabaseWithUserSelected()
         updateHelpUserDatabaseWithHelperPaired()
         
+        readyButton.isEnabled = false
+        
         let nameWithColon = ListUsersHelpViewController.buttonSelectedName
         let lengthJustName = nameWithColon.count - 2
         let index = nameWithColon.index(nameWithColon.startIndex, offsetBy: lengthJustName)
@@ -65,6 +67,7 @@ class SelectedUserViewController: UIViewController {
         updateWantToHelpUserDatabaseWithRetrieved()
         updateHelpUserDatabaseWithRetrieved()
         print("items retreived!")
+        readyButton.isEnabled = true
     }
     
     @IBAction func readyButtonClicked(_ sender: Any) {
@@ -72,6 +75,8 @@ class SelectedUserViewController: UIViewController {
         updateWantToHelpUserDatabaseWithDelivered()
         updateWantHelpUserDatabaseWithDelivered()
         print("item at doorstep!")
+        
+        // TODO: remove user helping and user being helped from db
     }
     
     func updateWantToHelpUserDatabaseWithDelivered() {
@@ -142,6 +147,8 @@ class SelectedUserViewController: UIViewController {
     
     func updateHelpUserDatabaseWithHelperPaired() {
         let uuid = ListUsersHelpViewController.buttonSelectedUUID
+        
+        //TODO: add above UUID to another branch of database to know that they are being helped
         
         let observeDB = databaseRef.child("wantHelp_user").child(uuid).observeSingleEvent(of: .value) { (snapshot) in
             

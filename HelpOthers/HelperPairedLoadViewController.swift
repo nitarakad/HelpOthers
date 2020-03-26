@@ -29,7 +29,7 @@ class HelperPairedLoadViewController: UIViewController {
     }
 
     @objc func checkIfHelperPaired() {
-        databaseRef.child("wantHelp_user").child(WantHelpViewController.userUUID).child("helper_paired_uuid").observe(.value) { (snapshot) in
+        databaseRef.child("wantHelp_user").child(WantHelpViewController.userUUID).child("helper_paired_uuid").observeSingleEvent(of: .value) { (snapshot) in
             if !snapshot.exists() {
                 print("doesn't exist --> user hasnt been paired yet")
             } else {

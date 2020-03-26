@@ -128,6 +128,8 @@ class ListUsersHelpViewController: UIViewController {
             
             for uid in userUIDs {
                 
+                // TODO: check if uid is already being helped --> don't want to display it
+                
                 let currButton = UIButton()
                 currButton.frame = CGRect(x: currX, y: currY, width: self.view.frame.width, height: 60)
                 currButton.setTitle("\(usernames[uid]!): ", for: .normal)
