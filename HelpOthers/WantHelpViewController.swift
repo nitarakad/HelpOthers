@@ -42,6 +42,18 @@ class WantHelpViewController: UIViewController {
             
         } else {
             print("user wants help with groceries")
+            
+            if let name = nameInputField.text, WantHelpViewController.userName == "" && name.count > 0 {
+                WantHelpViewController.userName = name
+                
+                let uuid = UUID().uuidString
+                print(uuid)
+                WantHelpViewController.userUUID = uuid
+                
+                self.databaseRef.child("wantHelp_user").child(uuid).setValue(["username" : name])
+                
+                print("user inputted name")
+            }
         
             WantHelpViewController.helpWith = "groceries"
         
@@ -69,6 +81,18 @@ class WantHelpViewController: UIViewController {
             
         } else {
             print("user wants help with prescription")
+            
+            if let name = nameInputField.text, WantHelpViewController.userName == "" && name.count > 0 {
+                WantHelpViewController.userName = name
+                
+                let uuid = UUID().uuidString
+                print(uuid)
+                WantHelpViewController.userUUID = uuid
+                
+                self.databaseRef.child("wantHelp_user").child(uuid).setValue(["username" : name])
+                
+                print("user inputted name")
+            }
         
             WantHelpViewController.helpWith = "prescription"
         
