@@ -52,8 +52,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="selectEitherLabel" destination="6aw-j0-EUC" id="bdR-ND-KC6"/>
                         <outlet property="wantHelpButton" destination="fQV-df-koQ" id="KHr-ZW-Tv9"/>
                         <outlet property="wantToHelpButton" destination="Lrc-BF-tOy" id="J9b-o0-edA"/>
+                        <outlet property="welcomeLabel" destination="bHi-AE-BbV" id="9JG-p6-lpj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
