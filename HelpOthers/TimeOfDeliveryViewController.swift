@@ -2,13 +2,14 @@
 //  TimeOfDeliveryViewController.swift
 //  HelpOthers
 //
-//  Created by Nitya Tarakad on 3/25/20.
+//  Created by Nitya Tarakad on 3/26/20.
 //  Copyright © 2020 Nitya Tarakad. All rights reserved.
 //
 
 import Foundation
 import UIKit
 import Firebase
+import MapKit
 
 class TimeOfDeliveryViewController: UIViewController {
     
@@ -20,20 +21,33 @@ class TimeOfDeliveryViewController: UIViewController {
     @IBOutlet weak var nextTwoHoursButton: UIButton!
     @IBOutlet weak var nextThreeHoursButton: UIButton!
     @IBOutlet weak var nextFourHoursButton: UIButton!
-    @IBOutlet weak var scrollView: UIScrollView!
-    
-    @IBOutlet weak var addressInput: UITextField!
     
     @IBOutlet weak var submitButton: UIButton!
     
     static var address = ""
     static var TOD = ""
+    static var latitude = ""
+    static var longitude = ""
     
     var databaseRef: DatabaseReference!
     var buttonColor: UIColor!
     
+    // map kit for address auto complete
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchResultsTableView: UITableView!
+    var searchCompleter = MKLocalSearchCompleter()
+    var searchResults = [MKLocalSearchCompletion]()
+    var searchSource: [String]?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchBar.delegate = self
+        searchCompleter.delegate = self
+        searchResultsTableView.delegate = self
+        searchResultsTableView.dataSource = self
+        searchBar.isUserInteractionEnabled = false
         
         databaseRef = Database.database().reference()
         
@@ -69,18 +83,7 @@ class TimeOfDeliveryViewController: UIViewController {
         nextThreeHoursButton.setTitle(threeHoursText, for: .normal)
         nextFourHoursButton.setTitle(fourHoursText, for: .normal)
         
-        scrollView.addSubview(timeOfDeliveryLabel)
-        scrollView.addSubview(inputAddressLabel)
-        scrollView.addSubview(asapButton)
-        scrollView.addSubview(nextHourButton)
-        scrollView.addSubview(nextTwoHoursButton)
-        scrollView.addSubview(nextThreeHoursButton)
-        scrollView.addSubview(nextFourHoursButton)
-        scrollView.addSubview(addressInput)
         submitButton.isHidden = true
-        scrollView.addSubview(submitButton)
-        addressInput.delegate = self
-        scrollView.contentSize = CGSize(width: view.frame.width, height: view.frame.height+100)
         
     }
     
@@ -140,48 +143,37 @@ class TimeOfDeliveryViewController: UIViewController {
     }
     
     @IBAction func submitButtonClicked(_ sender: Any) {
-        if let address = addressInput.text, address.count == 0 {
-            print("user did not input an address")
-            
-            let alertController = UIAlertController(title: "Input Address", message:
-                "Enter your address for pairing!", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
-
-            self.present(alertController, animated: true, completion: nil)
+        var listOfItems = ""
+        if WantHelpViewController.helpWith == "groceries" {
+            listOfItems = ListGroceriesViewController.listOfGroceries
         } else {
-            // TODO: connect with user wanting to help
-            
-            var listOfItems = ""
-            if WantHelpViewController.helpWith == "groceries" {
-                listOfItems = ListGroceriesViewController.listOfGroceries
-            } else {
-                listOfItems = ListPrescriptionViewController.listOfPrescriptions
-            }
-            
-            let addAddress = ["username" : WantHelpViewController.userName,
-                "want_help_with" : WantHelpViewController.helpWith,
-            "list_of_items" : listOfItems,
-            "time_of_delivery" : TimeOfDeliveryViewController.TOD,
-            "address" : TimeOfDeliveryViewController.address]
-            
-            let updateAddress = ["/wantHelp_user/\(WantHelpViewController.userUUID)" : addAddress]
-            
-            self.databaseRef.updateChildValues(updateAddress)
-            
-            print("updated with address of user wanting help")
-            
-            print("user submitted")
-            
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "helperpairedload") as! HelperPairedLoadViewController
-            newViewController.modalPresentationStyle = .fullScreen
-            self.present(newViewController, animated: true, completion: nil)
-            
+            listOfItems = ListPrescriptionViewController.listOfPrescriptions
         }
+        
+        let addAddressAndCoord = ["username" : WantHelpViewController.userName,
+                                "want_help_with" : WantHelpViewController.helpWith,
+                                "list_of_items" : listOfItems,
+                                "time_of_delivery" : TimeOfDeliveryViewController.TOD,
+                                "address" : TimeOfDeliveryViewController.address,
+                                "latitude" : TimeOfDeliveryViewController.latitude,
+                                "longitude" : TimeOfDeliveryViewController.longitude]
+        
+        let updateAddressAndCoord = ["/wantHelp_user/\(WantHelpViewController.userUUID)" : addAddressAndCoord]
+        
+        self.databaseRef.updateChildValues(updateAddressAndCoord)
+        
+        print("updated with address of user wanting help")
+        
+        print("user submitted")
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "helperpairedload") as! HelperPairedLoadViewController
+        newViewController.modalPresentationStyle = .fullScreen
+        self.present(newViewController, animated: true, completion: nil)
     }
     
     func updateDatabaseWithTODOf(timeOfDelivery: String) {
-        
+        self.searchBar.isUserInteractionEnabled = true
         TimeOfDeliveryViewController.TOD = timeOfDelivery
         
         var listOfItems = ""
@@ -204,37 +196,81 @@ class TimeOfDeliveryViewController: UIViewController {
     }
 }
 
-extension TimeOfDeliveryViewController: UITextFieldDelegate {
+extension TimeOfDeliveryViewController: UISearchBarDelegate {
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("user begins entering address")
-        var point = textField.frame.origin
-        point.y = point.y - 100
-        scrollView.setContentOffset(point, animated: true)
-        scrollView.isScrollEnabled = false
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("**search bar text changed**")
+        searchCompleter.queryFragment = searchText
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        
-        print("user hit enter")
-        
-//        guard let address = textField.text, address.count > 0 else {
-//            print("user didn't input address")
-//            return false
-//        }
-        
-        let addressText = textField.text!
-        
-        print("user inputted address: \(addressText)")
-        
-        TimeOfDeliveryViewController.address = addressText
-        
-        scrollView.isScrollEnabled = true
-        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
         submitButton.isHidden = false
-        
-        return true
     }
     
+}
+
+extension TimeOfDeliveryViewController: MKLocalSearchCompleterDelegate {
+    
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        searchResults = completer.results
+        searchResultsTableView.reloadData()
+    }
+    
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+        // handle error
+    }
+}
+
+extension TimeOfDeliveryViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchResults.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let searchResult = searchResults[indexPath.row]
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        cell.textLabel?.text = searchResult.title
+        cell.detailTextLabel?.text = searchResult.subtitle
+
+        return cell
+    }
+}
+
+extension TimeOfDeliveryViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        let completion = searchResults[indexPath.row]
+
+        let searchRequest = MKLocalSearch.Request(completion: completion)
+        let search = MKLocalSearch(request: searchRequest)
+        search.start { (response, error) in
+            let coordinate = response?.mapItems[0].placemark.coordinate
+            print(String(describing: coordinate))
+            print(response?.mapItems)
+            self.searchBar.text = response?.mapItems[0].name
+            
+            guard let latitude = coordinate?.latitude else {
+                print("no latitude")
+                return
+            }
+            TimeOfDeliveryViewController.latitude = String(latitude)
+            guard let longitude = coordinate?.longitude else {
+                print("no longitude")
+                return
+            }
+            TimeOfDeliveryViewController.longitude = String(longitude)
+            let placemark = response?.mapItems[0].placemark
+            let fullAddress = "\(placemark?.subThoroughfare ?? "") \(placemark?.thoroughfare ?? ""), \(placemark?.locality ?? "") \(placemark?.administrativeArea ?? ""), \(placemark?.postalCode ?? ""), \(placemark?.country ?? "")"
+            TimeOfDeliveryViewController.address = fullAddress
+        }
+        searchResults = []
+        self.searchResultsTableView.reloadData()
+    }
 }
