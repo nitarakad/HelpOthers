@@ -10,7 +10,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="HelpOthers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainscreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="HelpOthers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,7 +36,6 @@
                                 <state key="normal" title=" I Want to Help"/>
                                 <connections>
                                     <action selector="toWantToHelpScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9OC-O6-ZtL"/>
-                                    <segue destination="M1B-zz-2Cx" kind="presentation" id="NgD-2C-Y81"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQV-df-koQ">
@@ -46,7 +45,6 @@
                                 <state key="normal" title="I Want Help"/>
                                 <connections>
                                     <action selector="toWantHelpScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fff-rE-an8"/>
-                                    <segue destination="BJe-t1-1fG" kind="presentation" id="41S-Q4-bWF"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -99,7 +97,6 @@
                                 <state key="normal" title="Next"/>
                                 <connections>
                                     <action selector="toTimeOfDeliveryScreen:" destination="KAE-J8-i4G" eventType="touchUpInside" id="PJE-bj-EZt"/>
-                                    <segue destination="Oz6-QV-kxB" kind="presentation" id="Fk0-qs-ZsF"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -118,9 +115,9 @@
         <!--Want Help View Controller-->
         <scene sceneID="MYy-EH-nS3">
             <objects>
-                <viewController id="BJe-t1-1fG" customClass="WantHelpViewController" customModule="HelpOthers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="wanthelp" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BJe-t1-1fG" customClass="WantHelpViewController" customModule="HelpOthers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ds1-5Z-RHk">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What is your name?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYn-Tf-Ed5">
@@ -188,9 +185,9 @@
         <!--Want To Help View Controller-->
         <scene sceneID="db6-jD-HqA">
             <objects>
-                <viewController id="M1B-zz-2Cx" customClass="WantToHelpViewController" customModule="HelpOthers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="wanttohelp" useStoryboardIdentifierAsRestorationIdentifier="YES" id="M1B-zz-2Cx" customClass="WantToHelpViewController" customModule="HelpOthers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RFT-wi-cf7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What is your name?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEL-gq-Uja">
@@ -354,7 +351,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Z46-VL-Cpj">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="onDrag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Z46-VL-Cpj">
                                 <rect key="frame" x="28" y="196" width="358" height="381"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -371,7 +368,6 @@
                                     <action selector="toTimeOfDeliveryScreen:" destination="P7R-UP-k1f" eventType="touchUpInside" id="bgu-Kh-YPn"/>
                                     <action selector="toWantHelpPrescriptionScreen:" destination="BJe-t1-1fG" eventType="touchUpInside" id="8O4-dF-mGR"/>
                                     <action selector="toWantHelpScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yoz-UN-8cr"/>
-                                    <segue destination="Oz6-QV-kxB" kind="presentation" id="0qg-4B-XnO"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Also, list where to buy from!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIP-pl-HPJ">
@@ -398,13 +394,13 @@
         <!--Time Of Delivery View Controller-->
         <scene sceneID="Nqx-7a-OWA">
             <objects>
-                <viewController id="Oz6-QV-kxB" customClass="TimeOfDeliveryViewController" customModule="HelpOthers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="timeofdelivery" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Oz6-QV-kxB" customClass="TimeOfDeliveryViewController" customModule="HelpOthers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="acI-91-Q49">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="whS-wd-V0B">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="UZc-K1-0Gv"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="uIO-LG-GTR"/>
@@ -576,11 +572,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xeC-7W-mst">
+                                <rect key="frame" x="33" y="595" width="348" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="Back to Main Screen"/>
+                                <connections>
+                                    <action selector="mainScreenButtonClicked:" destination="ggj-Yp-wVp" eventType="touchUpInside" id="dyB-HE-tEl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="kgn-5J-m3z"/>
                     </view>
                     <connections>
+                        <outlet property="mainScreenButton" destination="xeC-7W-mst" id="LWj-Rk-6zg"/>
                         <outlet property="nameOfHelperLabel" destination="ASx-NP-VYK" id="7YV-C8-Mb2"/>
                         <outlet property="updateLabel" destination="q3k-Yk-sL7" id="uzh-YI-yVd"/>
                     </connections>
@@ -590,7 +596,4 @@
             <point key="canvasLocation" x="3430" y="848"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="0qg-4B-XnO"/>
-    </inferredMetricsTieBreakers>
 </document>

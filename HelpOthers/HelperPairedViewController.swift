@@ -14,6 +14,7 @@ class HelperPairedViewController: UIViewController {
     
     @IBOutlet weak var nameOfHelperLabel: UILabel!
     @IBOutlet weak var updateLabel: UILabel!
+    @IBOutlet weak var mainScreenButton: UIButton!
     
     var databaseRef: DatabaseReference!
     var timerRetrieved = Timer()
@@ -26,6 +27,10 @@ class HelperPairedViewController: UIViewController {
         
         databaseRef = Database.database().reference()
         
+        
+        mainScreenButton.isEnabled = false
+        mainScreenButton.isHidden = true
+        
         setNameOfHelperWithDatabase()
         
         checkIfRetrievedTimer()
@@ -33,6 +38,18 @@ class HelperPairedViewController: UIViewController {
         checkifDeliveredTimer()
         
     
+    }
+    
+    @IBAction func mainScreenButtonClicked(_ sender: Any) {
+        // TODO: remove user helping and user being helped from db
+
+        print("**user going back to main screen**")
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainscreen") as! ViewController
+        newViewController.modalPresentationStyle = .fullScreen
+        self.present(newViewController, animated: true, completion: nil)
+        
     }
     
     func checkIfRetrievedTimer() {
@@ -54,7 +71,6 @@ class HelperPairedViewController: UIViewController {
                 self.present(alertController, animated: true, completion: nil)
                 
                 self.timerRetrieved.invalidate()
-                
                 
             } else {
                 print("**helper hasn't retrieved items yet**")
@@ -82,6 +98,9 @@ class HelperPairedViewController: UIViewController {
                 self.present(alertController, animated: true, completion: nil)
                 
                 self.timerDelivered.invalidate()
+                
+                self.mainScreenButton.isHidden = false
+                self.mainScreenButton.isEnabled = true
                 
             } else {
                 print("**helper hasn't delivered items yet**")

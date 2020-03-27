@@ -174,6 +174,7 @@ class TimeOfDeliveryViewController: UIViewController {
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "helperpairedload") as! HelperPairedLoadViewController
+            newViewController.modalPresentationStyle = .fullScreen
             self.present(newViewController, animated: true, completion: nil)
             
         }

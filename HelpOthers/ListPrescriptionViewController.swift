@@ -27,7 +27,13 @@ class ListPrescriptionViewController: UIViewController {
         listPrescription.layer.borderColor = CGColor(genericGrayGamma2_2Gray: 1.0, alpha: 1.0)
         listPrescription.layer.borderWidth = 1.0
         
+        self.listPrescription.addDoneButton(title: "Done", target: self, selector: #selector(doneWritingList(sender:)))
+        
         databaseRef = Database.database().reference()
+    }
+    
+    @objc func doneWritingList(sender: Any) {
+        self.view.endEditing(true)
     }
     
     @IBAction func toTimeOfDeliveryScreen(_ sender: Any) {
@@ -43,6 +49,10 @@ class ListPrescriptionViewController: UIViewController {
         self.databaseRef.updateChildValues(updateWithListGroceries)
         
         print("going to time of delivery screen")
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "timeofdelivery") as! TimeOfDeliveryViewController
+        newViewController.modalPresentationStyle = .fullScreen
+        self.present(newViewController, animated: true, completion: nil)
     }
     
 }

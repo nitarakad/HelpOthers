@@ -24,11 +24,23 @@ class ViewController: UIViewController {
     @IBAction func toWantHelpScreen(_ sender: Any) {
         print("user wants help")
         ViewController.userStatus = "help"
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "wanthelp") as! WantHelpViewController
+        
+        newViewController.modalPresentationStyle = .fullScreen
+        self.present(newViewController, animated: true, completion: nil)
     }
     
     @IBAction func toWantToHelpScreen(_ sender: Any) {
         print("user is helping")
         ViewController.userStatus = "helping"
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "wanttohelp") as! WantToHelpViewController
+        
+        newViewController.modalPresentationStyle = .fullScreen
+        self.present(newViewController, animated: true, completion: nil)
     }
 
 

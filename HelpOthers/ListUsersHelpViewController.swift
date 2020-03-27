@@ -48,6 +48,7 @@ class ListUsersHelpViewController: UIViewController {
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "selecteduser") as! SelectedUserViewController
+        newViewController.modalPresentationStyle = .fullScreen
         self.present(newViewController, animated: true, completion: nil)
     }
     
@@ -126,16 +127,18 @@ class ListUsersHelpViewController: UIViewController {
             var currY = self.scrollView.bounds.origin.y + 50
             let currX = self.scrollView.bounds.minX
             
-            let currentlyBeingHelpedDict = allUsers["users_being_helped"] as! Dictionary<String, Dictionary<String,String>>
             var currentlyBeingHelpedUUID = [String]()
-            for user in currentlyBeingHelpedDict {
-                let uid = user.key
-                currentlyBeingHelpedUUID.append(uid)
+            let beingHelped = allUsers["users_being_helped"]
+            
+            if beingHelped != nil {
+                let currentlyBeingHelpedDict = beingHelped as! Dictionary<String, Dictionary<String, String>>
+                for user in currentlyBeingHelpedDict {
+                    let uid = user.key
+                    currentlyBeingHelpedUUID.append(uid)
+                }
             }
             
             for uid in userUIDs {
-                
-                // TODO: check if uid is already being helped --> don't want to display it
                 if (!currentlyBeingHelpedUUID.contains(uid)) {
                     let currButton = UIButton()
                     currButton.frame = CGRect(x: currX, y: currY, width: self.view.frame.width, height: 60)

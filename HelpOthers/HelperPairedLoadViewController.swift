@@ -36,6 +36,7 @@ class HelperPairedLoadViewController: UIViewController {
                 print("does exist --> user has been paired")
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let newViewController = storyBoard.instantiateViewController(withIdentifier: "helperpaired") as! HelperPairedViewController
+                newViewController.modalPresentationStyle = .fullScreen
                 self.present(newViewController, animated: true, completion: nil)
                 self.timer.invalidate()
             }

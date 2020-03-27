@@ -46,11 +46,13 @@ class WantHelpViewController: UIViewController {
             if let name = nameInputField.text, WantHelpViewController.userName == "" && name.count > 0 {
                 WantHelpViewController.userName = name
                 
-                let uuid = UUID().uuidString
-                print(uuid)
-                WantHelpViewController.userUUID = uuid
+                if WantHelpViewController.userUUID == "" {
+                    let uuid = UUID().uuidString
+                    print(uuid)
+                    WantHelpViewController.userUUID = uuid
+                }
                 
-                self.databaseRef.child("wantHelp_user").child(uuid).setValue(["username" : name])
+                self.databaseRef.child("wantHelp_user").child(WantHelpViewController.userUUID).setValue(["username" : name])
                 
                 print("user inputted name")
             }
@@ -64,7 +66,8 @@ class WantHelpViewController: UIViewController {
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "groceries") as! ListGroceriesViewController
-                    self.present(newViewController, animated: true, completion: nil)
+            newViewController.modalPresentationStyle = .fullScreen
+            self.present(newViewController, animated: true, completion: nil)
         }
     }
     
@@ -85,11 +88,13 @@ class WantHelpViewController: UIViewController {
             if let name = nameInputField.text, WantHelpViewController.userName == "" && name.count > 0 {
                 WantHelpViewController.userName = name
                 
-                let uuid = UUID().uuidString
-                print(uuid)
-                WantHelpViewController.userUUID = uuid
+                if WantHelpViewController.userUUID == "" {
+                    let uuid = UUID().uuidString
+                    print(uuid)
+                    WantHelpViewController.userUUID = uuid
+                }
                 
-                self.databaseRef.child("wantHelp_user").child(uuid).setValue(["username" : name])
+                self.databaseRef.child("wantHelp_user").child(WantHelpViewController.userUUID).setValue(["username" : name])
                 
                 print("user inputted name")
             }
@@ -103,7 +108,8 @@ class WantHelpViewController: UIViewController {
             
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let newViewController = storyBoard.instantiateViewController(withIdentifier: "prescription") as! ListPrescriptionViewController
-                    self.present(newViewController, animated: true, completion: nil)
+            newViewController.modalPresentationStyle = .fullScreen
+            self.present(newViewController, animated: true, completion: nil)
         }
     }
 }
@@ -121,11 +127,13 @@ extension WantHelpViewController: UITextFieldDelegate {
         
         WantHelpViewController.userName = name
         
-        let uuid = UUID().uuidString
-        print(uuid)
-        WantHelpViewController.userUUID = uuid
+        if WantHelpViewController.userUUID == "" {
+            let uuid = UUID().uuidString
+            print(uuid)
+            WantHelpViewController.userUUID = uuid
+        }
         
-        self.databaseRef.child("wantHelp_user").child(uuid).setValue(["username" : name])
+        self.databaseRef.child("wantHelp_user").child(WantHelpViewController.userUUID).setValue(["username" : name])
         
         print("user inputted name")
         return true

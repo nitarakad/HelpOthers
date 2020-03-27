@@ -43,8 +43,9 @@ class SelectedUserViewController: UIViewController {
         itemsTextView.center.x = self.view.center.x
         itemsTextView.layer.borderColor = CGColor(genericGrayGamma2_2Gray: 1.0, alpha: 1.0)
         itemsTextView.layer.borderWidth = 1.0
-        itemsTextView.textColor = UIColor.white
+        itemsTextView.textColor = UIColor.gray
         itemsTextView.font = UIFont.systemFont(ofSize: 30)
+        itemsTextView.isEditable = false
         self.view.addSubview(itemsTextView)
         
         let observeDB = databaseRef.child("wantHelp_user").child(ListUsersHelpViewController.buttonSelectedUUID).observeSingleEvent(of: .value) { (snapshot) in
@@ -75,8 +76,6 @@ class SelectedUserViewController: UIViewController {
         updateWantToHelpUserDatabaseWithDelivered()
         updateWantHelpUserDatabaseWithDelivered()
         print("item at doorstep!")
-        
-        // TODO: remove user helping and user being helped from db
     }
     
     func updateWantToHelpUserDatabaseWithDelivered() {
@@ -148,7 +147,6 @@ class SelectedUserViewController: UIViewController {
     func updateHelpUserDatabaseWithHelperPaired() {
         let uuid = ListUsersHelpViewController.buttonSelectedUUID
         
-        //TODO: add above UUID to another branch of database to know that they are being helped
         databaseRef.child("users_being_helped").child(uuid).setValue(["helped" : "yes"])
         
         let observeDB = databaseRef.child("wantHelp_user").child(uuid).observeSingleEvent(of: .value) { (snapshot) in
