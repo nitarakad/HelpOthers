@@ -83,7 +83,90 @@ class TimeOfDeliveryViewController: UIViewController {
         nextThreeHoursButton.setTitle(threeHoursText, for: .normal)
         nextFourHoursButton.setTitle(fourHoursText, for: .normal)
         
+        self.searchResultsTableView.isHidden = true
         submitButton.isHidden = true
+        
+        let widthForHourButtons = CGFloat(150.0)
+        let heightForHourButtons = CGFloat(60.0)
+        
+        let closeLeftAnchorConstant = CGFloat(20.0)
+        let farLeftAnchorConstant = CGFloat(200.0)
+        
+        /* AUTO LAYOUT */
+        // time of delivery label
+        timeOfDeliveryLabel.translatesAutoresizingMaskIntoConstraints = false
+        timeOfDeliveryLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        timeOfDeliveryLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        timeOfDeliveryLabel.widthAnchor.constraint(equalToConstant: 400).isActive = true
+        timeOfDeliveryLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        timeOfDeliveryLabel.textAlignment = .center
+        
+        // time buttons
+        asapButton.translatesAutoresizingMaskIntoConstraints = false
+        asapButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        asapButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        asapButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        asapButton.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        asapButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        
+        nextHourButton.translatesAutoresizingMaskIntoConstraints = false
+        nextHourButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 150).isActive = true
+        nextHourButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: closeLeftAnchorConstant).isActive = true
+        nextHourButton.widthAnchor.constraint(equalToConstant: widthForHourButtons).isActive = true
+        nextHourButton.heightAnchor.constraint(equalToConstant: heightForHourButtons).isActive = true
+        nextHourButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        nextHourButton.titleLabel?.lineBreakMode = .byClipping
+        
+        nextTwoHoursButton.translatesAutoresizingMaskIntoConstraints = false
+        nextTwoHoursButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 150).isActive = true
+        nextTwoHoursButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: farLeftAnchorConstant).isActive = true
+        nextTwoHoursButton.widthAnchor.constraint(equalToConstant: widthForHourButtons).isActive = true
+        nextTwoHoursButton.heightAnchor.constraint(equalToConstant: heightForHourButtons).isActive = true
+        nextTwoHoursButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        nextTwoHoursButton.titleLabel?.lineBreakMode = .byClipping
+        
+        nextThreeHoursButton.translatesAutoresizingMaskIntoConstraints = false
+        nextThreeHoursButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
+        nextThreeHoursButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: closeLeftAnchorConstant).isActive = true
+        nextThreeHoursButton.widthAnchor.constraint(equalToConstant: widthForHourButtons).isActive = true
+        nextThreeHoursButton.heightAnchor.constraint(equalToConstant: heightForHourButtons).isActive = true
+        nextThreeHoursButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        nextThreeHoursButton.titleLabel?.lineBreakMode = .byClipping
+        
+        nextFourHoursButton.translatesAutoresizingMaskIntoConstraints = false
+        nextFourHoursButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
+        nextFourHoursButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: farLeftAnchorConstant).isActive = true
+        nextFourHoursButton.widthAnchor.constraint(equalToConstant: widthForHourButtons).isActive = true
+        nextFourHoursButton.heightAnchor.constraint(equalToConstant: heightForHourButtons).isActive = true
+        nextFourHoursButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        nextFourHoursButton.titleLabel?.lineBreakMode = .byClipping
+        
+        // address components
+        inputAddressLabel.translatesAutoresizingMaskIntoConstraints = false
+        inputAddressLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        inputAddressLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 250).isActive = true
+        inputAddressLabel.widthAnchor.constraint(equalToConstant: 400).isActive = true
+        inputAddressLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        inputAddressLabel.textAlignment = .center
+        
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        searchBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 350).isActive = true
+        searchBar.widthAnchor.constraint(equalToConstant: 400).isActive = true
+        
+        searchResultsTableView.translatesAutoresizingMaskIntoConstraints = false
+        searchResultsTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        searchResultsTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 395).isActive = true
+        searchResultsTableView.widthAnchor.constraint(equalToConstant: 400).isActive = true
+        searchResultsTableView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        
+        submitButton.translatesAutoresizingMaskIntoConstraints = false
+        submitButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 400).isActive = true
+        submitButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 200).isActive = true
+        submitButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        submitButton.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        submitButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        submitButton.titleLabel?.lineBreakMode = .byClipping
         
     }
     
@@ -201,11 +284,13 @@ extension TimeOfDeliveryViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("**search bar text changed**")
         searchCompleter.queryFragment = searchText
+        self.searchResultsTableView.isHidden = false
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.view.endEditing(true)
         submitButton.isHidden = false
+        self.searchResultsTableView.isHidden = true
     }
     
 }

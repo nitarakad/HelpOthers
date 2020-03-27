@@ -490,7 +490,7 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="go"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wT9-9C-pm1">
-                                <rect key="frame" x="0.0" y="433" width="414" height="180"/>
+                                <rect key="frame" x="0.0" y="433" width="414" height="266"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
