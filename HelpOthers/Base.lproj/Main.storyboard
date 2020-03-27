@@ -176,7 +176,10 @@
                     <navigationItem key="navigationItem" id="tNv-cb-aPo"/>
                     <connections>
                         <outlet property="groceriesButton" destination="opr-hg-wqR" id="0v1-bf-PfN"/>
+                        <outlet property="helloThereLabel" destination="o3T-E3-5Wd" id="r1R-QP-KbT"/>
+                        <outlet property="helpWithLabel" destination="fl1-ps-kJ2" id="hpr-En-ian"/>
                         <outlet property="nameInputField" destination="gS9-nY-j8T" id="lXn-rb-GGU"/>
+                        <outlet property="nameQuestionLabel" destination="bYn-Tf-Ed5" id="50G-Q0-Pph"/>
                         <outlet property="prescriptionButton" destination="GbP-cI-Fl1" id="QSO-Ik-ezj"/>
                     </connections>
                 </viewController>
