@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
+import CoreLocation
 
 class ListUsersHelpViewController: UIViewController {
     
@@ -68,7 +69,7 @@ class ListUsersHelpViewController: UIViewController {
             var timeOfDeliveries = Dictionary<String, String>()
             for userInfo in usersWantHelp {
                 let currUID = userInfo.key
-                userUIDs.append(currUID)
+                
                 guard let info = usersWantHelp[userInfo.key] else {
                     print("no users want help")
                     return
@@ -99,6 +100,16 @@ class ListUsersHelpViewController: UIViewController {
                     return
                 }
                 
+                guard let latitude = info["latitude"] else {
+                    print("no latitude")
+                    return
+                }
+                
+                guard let longitude = info["longitude"] else {
+                    print("no longitude")
+                    return
+                }
+                
                 var TOD = ""
                 if timeOfDelivery == "ASAP" {
                     TOD = "ASAP"
@@ -119,13 +130,27 @@ class ListUsersHelpViewController: UIViewController {
                 listItems[currUID] = listOfItems
                 timeOfDeliveries[currUID] = TOD
                 addresses[currUID] = address
+                
+                guard let latitudeWantToHelp = Double(WantToHelpViewController.latitude), let longitudeWantToHelp = Double(WantToHelpViewController.longitude) else {
+                    print("invalid coordinates for want to help user")
+                    return
+                }
+                
+                guard let latitudeHelp = Double(latitude), let longitudeHelp = Double(longitude) else {
+                    print("invalid coordinates for want help users")
+                    return
+                }
+                let wantToHelpCoord = CLLocation(latitude: latitudeWantToHelp, longitude: longitudeWantToHelp)
+                let wantHelpCoord = CLLocation(latitude: latitudeHelp, longitude: longitudeHelp)
+                
+                let distanceInMetersAbs = abs(wantHelpCoord.distance(from: wantToHelpCoord))
+                
+                // want to append to the list if the user is in range
+                // 10 miles = 16093.4 meters (about)
+                if (distanceInMetersAbs < 16095) {
+                    userUIDs.append(currUID)
+                }
             }
-            
-            //print(usernames)
-            //print(helpWiths)
-            //print(listItems)
-            //print(timeOfDeliveries)
-            //print(addresses)
             
             var currY = self.scrollView.bounds.origin.y + 50
             let currX = self.scrollView.bounds.minX
