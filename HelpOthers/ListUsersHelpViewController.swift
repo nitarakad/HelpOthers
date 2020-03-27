@@ -25,6 +25,9 @@ class ListUsersHelpViewController: UIViewController {
         
         databaseRef = Database.database().reference()
         
+        print("**in list: latitude \(WantToHelpViewController.latitude)")
+        print("**in list: longitude \(WantToHelpViewController.longitude)")
+        
         buttonsUUID = Dictionary<UIButton, String>()
         
         retrieveAndShowUsers()

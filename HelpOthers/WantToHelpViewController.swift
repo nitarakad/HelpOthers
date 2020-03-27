@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
+import CoreLocation
 
 class WantToHelpViewController: UIViewController {
     
@@ -19,10 +20,22 @@ class WantToHelpViewController: UIViewController {
     static var userName = ""
     static var userUUID = ""
     
+    static var latitude = ""
+    static var longitude = ""
+    
     var databaseRef: DatabaseReference!
+    
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        
+        if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways) {
+               locationManager.requestLocation()
+        }
+        
         nameInputField.delegate = self
         nameInputField.center.x = self.view.center.x
         
@@ -86,4 +99,30 @@ extension WantToHelpViewController: UITextFieldDelegate {
         return true
         
     }
+}
+
+extension WantToHelpViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("location authorization status changed")
+        if(status == .authorizedWhenInUse || status == .authorizedAlways){
+          manager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            WantToHelpViewController.latitude = String(location.coordinate.latitude)
+            WantToHelpViewController.longitude = String(location.coordinate.longitude)
+            print("latitude: \(WantToHelpViewController.latitude)")
+            print("longitude: \(WantToHelpViewController.longitude)")
+            manager.stopUpdatingLocation()
+            print("**stop getting location because acquired**")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
+    }
+    
 }
