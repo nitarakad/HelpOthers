@@ -14,6 +14,7 @@ class ListGroceriesViewController: UIViewController {
     
     @IBOutlet weak var listGroceries: UITextView!
     @IBOutlet weak var labelGroceries: UILabel!
+    @IBOutlet weak var noteLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
     
     static var listOfGroceries = ""
@@ -23,14 +24,56 @@ class ListGroceriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let transitionButtonNormal = UIImage(named: "transition_button_bkgd")
+        let transitionButtonClicked = UIImage(named: "transition_button_clicked_bkgd")
+        
         labelGroceries.center.x = self.view.center.x
         
         listGroceries.isScrollEnabled = true
         listGroceries.center.x = self.view.center.x
-        listGroceries.layer.borderColor = CGColor(genericGrayGamma2_2Gray: 1.0, alpha: 1.0)
-        listGroceries.layer.borderWidth = 1.0
         
         self.listGroceries.addDoneButton(title: "Done", target: self, selector: #selector(doneWritingList(sender:)))
+        
+        /* AUTO LAYOUT */
+        // groceries label
+        labelGroceries.translatesAutoresizingMaskIntoConstraints = false
+        labelGroceries.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        labelGroceries.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        labelGroceries.widthAnchor.constraint(equalToConstant: 400).isActive = true
+        labelGroceries.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        labelGroceries.textAlignment = .center
+        labelGroceries.adjustsFontSizeToFitWidth = true
+        
+        // note label
+        noteLabel.translatesAutoresizingMaskIntoConstraints = false
+        noteLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        noteLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 130).isActive = true
+        noteLabel.widthAnchor.constraint(equalToConstant: 250).isActive = true
+        noteLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        noteLabel.textAlignment = .center
+        noteLabel.adjustsFontSizeToFitWidth = true
+        
+        // text view
+        listGroceries.translatesAutoresizingMaskIntoConstraints = false
+        listGroceries.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        listGroceries.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
+        listGroceries.widthAnchor.constraint(equalToConstant: 360).isActive = true
+        listGroceries.heightAnchor.constraint(equalToConstant: 380).isActive = true
+        listGroceries.textAlignment = .left
+        listGroceries.layer.borderColor = CGColor(srgbRed: 58/255, green: 193/255, blue: 236/255, alpha: 1.0)
+        listGroceries.layer.borderWidth = 2.0
+        
+        // submit button
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        nextButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 590).isActive = true
+        nextButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        nextButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        nextButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 248).isActive = true
+        nextButton.setBackgroundImage(transitionButtonNormal, for: .normal)
+        nextButton.setBackgroundImage(transitionButtonClicked, for: .highlighted)
+        nextButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        nextButton.titleLabel?.textAlignment = .center
+        nextButton.setTitleColor(UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0), for: .normal)
         
         databaseRef = Database.database().reference()
     }

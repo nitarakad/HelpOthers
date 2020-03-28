@@ -402,6 +402,7 @@
                         <outlet property="labelGroceries" destination="fFP-EQ-BY3" id="wC4-a7-uaJ"/>
                         <outlet property="listGroceries" destination="Z46-VL-Cpj" id="GnE-OZ-RCh"/>
                         <outlet property="nextButton" destination="gKy-Yp-rVh" id="k5D-10-D0A"/>
+                        <outlet property="noteLabel" destination="PIP-pl-HPJ" id="QNl-Uz-rA3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d4N-dx-ts5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

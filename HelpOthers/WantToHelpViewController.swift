@@ -88,6 +88,7 @@ class WantToHelpViewController: UIViewController {
         startHelpButton.setBackgroundImage(buttonBackgroundNormalClicked, for: .highlighted)
         startHelpButton.titleLabel?.textAlignment = .center
         startHelpButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        startHelpButton.setTitleColor(UIColor(red: 227/255, green: 227/255, blue: 1.0, alpha: 1.0), for: .normal)
         
     }
     

@@ -80,6 +80,7 @@ class ViewController: UIViewController {
         wantHelpButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
         wantHelpButton.titleLabel?.textAlignment = .center
         wantHelpButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        wantHelpButton.setTitleColor(UIColor(red: 227/255, green: 227/255, blue: 1.0, alpha: 1.0), for: .normal)
         
         // wantToHelp button auto layout
         wantToHelpButton.translatesAutoresizingMaskIntoConstraints = false
@@ -91,6 +92,7 @@ class ViewController: UIViewController {
         wantToHelpButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
         wantToHelpButton.titleLabel?.textAlignment = .center
         wantToHelpButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        wantToHelpButton.setTitleColor(UIColor(red: 227/255, green: 227/255, blue: 1.0, alpha: 1.0), for: .normal)
     }
     
     @IBAction func toWantHelpScreen(_ sender: Any) {

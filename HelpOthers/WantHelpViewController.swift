@@ -77,6 +77,7 @@ class WantHelpViewController: UIViewController {
         groceriesButton.setBackgroundImage(buttonBackgroundNormalClicked, for: .highlighted)
         groceriesButton.titleLabel?.adjustsFontSizeToFitWidth = true
         groceriesButton.titleLabel?.textAlignment = .center
+        groceriesButton.setTitleColor(UIColor(red: 227/255, green: 227/255, blue: 1.0, alpha: 1.0), for: .normal)
         
         // prescriptionButton auto layout
         prescriptionButton.translatesAutoresizingMaskIntoConstraints = false
@@ -88,7 +89,7 @@ class WantHelpViewController: UIViewController {
         prescriptionButton.setBackgroundImage(buttonBackgroundNormalClicked, for: .highlighted)
         prescriptionButton.titleLabel?.adjustsFontSizeToFitWidth = true
         prescriptionButton.titleLabel?.textAlignment = .center
-
+        prescriptionButton.setTitleColor(UIColor(red: 227/255, green: 227/255, blue: 1.0, alpha: 1.0), for: .normal)
         
         nameInputField.delegate = self
         
