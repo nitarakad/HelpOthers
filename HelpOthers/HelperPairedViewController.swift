@@ -36,8 +36,6 @@ class HelperPairedViewController: UIViewController {
         checkIfRetrievedTimer()
         
         checkifDeliveredTimer()
-        
-    
     }
     
     @IBAction func mainScreenButtonClicked(_ sender: Any) {
@@ -52,7 +50,6 @@ class HelperPairedViewController: UIViewController {
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainscreen") as! ViewController
         newViewController.modalPresentationStyle = .fullScreen
         self.present(newViewController, animated: true, completion: nil)
-        
     }
     
     func checkIfRetrievedTimer() {

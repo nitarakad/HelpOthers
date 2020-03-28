@@ -16,12 +16,16 @@ class SelectedUserViewController: UIViewController {
     @IBOutlet weak var itemsTextView: UITextView!
     @IBOutlet weak var retrievedButton: UIButton!
     @IBOutlet weak var readyButton: UIButton!
+    @IBOutlet weak var returnToMainScreen: UIButton!
     
     var databaseRef: DatabaseReference!
     
     static var currentStatus = "none"
     
     override func viewDidLoad() {
+        
+        // TODO: display address
+        
         super.viewDidLoad()
         
         databaseRef = Database.database().reference()
@@ -30,6 +34,7 @@ class SelectedUserViewController: UIViewController {
         updateHelpUserDatabaseWithHelperPaired()
         
         readyButton.isEnabled = false
+        returnToMainScreen.isEnabled = false
         
         let nameWithColon = ListUsersHelpViewController.buttonSelectedName
         let lengthJustName = nameWithColon.count - 2
@@ -76,9 +81,18 @@ class SelectedUserViewController: UIViewController {
         updateWantToHelpUserDatabaseWithDelivered()
         updateWantHelpUserDatabaseWithDelivered()
         print("item at doorstep!")
-        
-        // TODO: make a button that takes you back to the original screen (ViewController)
+        returnToMainScreen.isEnabled = true
+    }
+    
+    @IBAction func mainScreenButtonClicked(_ sender: Any) {
         // TODO: when user hits button to go back to original screen, it deletes their info
+        let uuid = WantToHelpViewController.userUUID
+        self.databaseRef.child("wantToHelp_user").child(uuid).removeValue()
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainscreen") as! ViewController
+        newViewController.modalPresentationStyle = .fullScreen
+        self.present(newViewController, animated: true, completion: nil)
     }
     
     func updateWantToHelpUserDatabaseWithDelivered() {
