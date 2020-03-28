@@ -106,8 +106,10 @@
                         <viewLayoutGuide key="safeArea" id="TN0-sf-wp0"/>
                     </view>
                     <connections>
+                        <outlet property="labelPrescrption" destination="ZjG-Qg-gaE" id="y3h-OA-Wfn"/>
                         <outlet property="listPrescription" destination="NUF-5W-vS1" id="eWa-0k-S3k"/>
                         <outlet property="nextButton" destination="5dS-4z-FxX" id="4fa-Yx-0po"/>
+                        <outlet property="noteLabel" destination="zXa-jf-V4t" id="f60-zb-ZJY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yvb-yS-0MP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
