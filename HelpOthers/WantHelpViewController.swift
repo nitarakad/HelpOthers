@@ -28,6 +28,9 @@ class WantHelpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let buttonBackgroundNormal = UIImage(named: "regular_button_bkgd")
+        let buttonBackgroundNormalClicked = UIImage(named: "regular_button_clicked_bkgd")
+        
         // helloThereLabel auto layout
         helloThereLabel.translatesAutoresizingMaskIntoConstraints = false
         helloThereLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -52,6 +55,8 @@ class WantHelpViewController: UIViewController {
         nameInputField.widthAnchor.constraint(equalToConstant: 300).isActive = true
         nameInputField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         nameInputField.textAlignment = .center
+        nameInputField.layer.borderColor = CGColor(srgbRed: 58/255, green: 193/255, blue: 236/255, alpha: 1.0)
+        nameInputField.layer.borderWidth = 2.0
         nameInputField.adjustsFontSizeToFitWidth = true
         
         // helpWithLabel auto layout
@@ -65,16 +70,25 @@ class WantHelpViewController: UIViewController {
         // groceriesButton auto layout
         groceriesButton.translatesAutoresizingMaskIntoConstraints = false
         groceriesButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        groceriesButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 400).isActive = true
-        groceriesButton.widthAnchor.constraint(equalToConstant: 400).isActive = true
-        groceriesButton.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        groceriesButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 410).isActive = true
+        groceriesButton.widthAnchor.constraint(equalToConstant: 240).isActive = true
+        groceriesButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        groceriesButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        groceriesButton.setBackgroundImage(buttonBackgroundNormalClicked, for: .highlighted)
+        groceriesButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        groceriesButton.titleLabel?.textAlignment = .center
         
         // prescriptionButton auto layout
         prescriptionButton.translatesAutoresizingMaskIntoConstraints = false
         prescriptionButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        prescriptionButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 475).isActive = true
-        prescriptionButton.widthAnchor.constraint(equalToConstant: 400).isActive = true
-        prescriptionButton.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        prescriptionButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 510).isActive = true
+        prescriptionButton.widthAnchor.constraint(equalToConstant: 240).isActive = true
+        prescriptionButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        prescriptionButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        prescriptionButton.setBackgroundImage(buttonBackgroundNormalClicked, for: .highlighted)
+        prescriptionButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        prescriptionButton.titleLabel?.textAlignment = .center
+
         
         nameInputField.delegate = self
         
