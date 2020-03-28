@@ -229,7 +229,9 @@
                         <viewLayoutGuide key="safeArea" id="NbI-wq-x66"/>
                     </view>
                     <connections>
+                        <outlet property="helloLabel" destination="0zK-du-rHf" id="eT2-O0-cZE"/>
                         <outlet property="nameInputField" destination="Z11-5a-iHX" id="A8H-1L-Drs"/>
+                        <outlet property="nameQuestionLabel" destination="cEL-gq-Uja" id="AxW-FH-ABz"/>
                         <outlet property="startHelpButton" destination="E9Z-ps-YzI" id="G9U-eB-mnq"/>
                     </connections>
                 </viewController>

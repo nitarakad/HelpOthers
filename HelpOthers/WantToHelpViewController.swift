@@ -17,6 +17,10 @@ class WantToHelpViewController: UIViewController {
     
     @IBOutlet weak var startHelpButton: UIButton!
     
+    @IBOutlet weak var helloLabel: UILabel!
+    
+    @IBOutlet weak var nameQuestionLabel: UILabel!
+    
     static var userName = ""
     static var userUUID = ""
     
@@ -40,6 +44,42 @@ class WantToHelpViewController: UIViewController {
         nameInputField.center.x = self.view.center.x
         
         databaseRef = Database.database().reference()
+        
+        /* AUTO LAYOUT */
+        // hello button
+        helloLabel.translatesAutoresizingMaskIntoConstraints = false
+        helloLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        helloLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        helloLabel.widthAnchor.constraint(equalToConstant: 400).isActive = true
+        helloLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        helloLabel.textAlignment = .center
+        
+        // name question label
+        nameQuestionLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameQuestionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        nameQuestionLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
+        nameQuestionLabel.widthAnchor.constraint(equalToConstant: 400).isActive = true
+        nameQuestionLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        nameQuestionLabel.font = UIFont.systemFont(ofSize: 35)
+        nameQuestionLabel.textAlignment = .center
+        
+        // nameInput field
+        nameInputField.translatesAutoresizingMaskIntoConstraints = false
+        nameInputField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        nameInputField.topAnchor.constraint(equalTo: view.topAnchor, constant: 280).isActive = true
+        nameInputField.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        nameInputField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        nameInputField.textAlignment = .center
+        nameInputField.adjustsFontSizeToFitWidth = true
+        
+        // lets go button
+        startHelpButton.translatesAutoresizingMaskIntoConstraints = false
+        startHelpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        startHelpButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 430).isActive = true
+        startHelpButton.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        startHelpButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        startHelpButton.titleLabel?.textAlignment = .center
+        startHelpButton.titleLabel?.adjustsFontSizeToFitWidth = true
         
     }
     
