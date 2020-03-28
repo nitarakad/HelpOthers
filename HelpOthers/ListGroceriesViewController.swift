@@ -83,25 +83,39 @@ class ListGroceriesViewController: UIViewController {
     }
     
     @IBAction func toTimeOfDeliveryScreen(_ sender: Any) {
-        ListGroceriesViewController.listOfGroceries = listGroceries.text
-        print("groceries are: \(ListGroceriesViewController.listOfGroceries)")
         
-        let addListGroceries = ["username" : WantHelpViewController.userName,
-                                "want_help_with" : "groceries",
-                                "list_of_items" : ListGroceriesViewController.listOfGroceries]
+        if (listGroceries.text.count == 0) {
+            
+            print("list of groceries not written")
+            
+            let alertController = UIAlertController(title: "Empty List!", message:
+                "Enter the groceries you would like to receive", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else {
         
-        let updateWithListGroceries = ["/wantHelp_user/\(WantHelpViewController.userUUID)" : addListGroceries]
+            ListGroceriesViewController.listOfGroceries = listGroceries.text
+            print("groceries are: \(ListGroceriesViewController.listOfGroceries)")
         
-        self.databaseRef.updateChildValues(updateWithListGroceries)
+            let addListGroceries = ["username" : WantHelpViewController.userName,
+                                    "want_help_with" : "groceries",
+                                    "list_of_items" : ListGroceriesViewController.listOfGroceries]
         
-        //self.databaseRef.child("wantHelp_user").child(WantHelpViewController.userUUID).setValue(["list_of_groceries" : listGroceries.text])
+            let updateWithListGroceries = ["/wantHelp_user/\(WantHelpViewController.userUUID)" : addListGroceries]
         
-        print("going to time of delivery screen")
+            self.databaseRef.updateChildValues(updateWithListGroceries)
         
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "timeofdelivery") as! TimeOfDeliveryViewController
-        newViewController.modalPresentationStyle = .fullScreen
-        self.present(newViewController, animated: true, completion: nil)
+            //self.databaseRef.child("wantHelp_user").child(WantHelpViewController.userUUID).setValue(["list_of_groceries" : listGroceries.text])
+        
+            print("going to time of delivery screen")
+        
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "timeofdelivery") as! TimeOfDeliveryViewController
+            newViewController.modalPresentationStyle = .fullScreen
+            self.present(newViewController, animated: true, completion: nil)
+        }
     }
 }
 
