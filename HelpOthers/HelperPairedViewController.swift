@@ -41,9 +41,12 @@ class HelperPairedViewController: UIViewController {
     }
     
     @IBAction func mainScreenButtonClicked(_ sender: Any) {
-        // TODO: remove user helping and user being helped from db
-
         print("**user going back to main screen**")
+        
+        let uuid = WantHelpViewController.userUUID
+        
+        self.databaseRef.child("users_being_helped").child(uuid).removeValue()
+        self.databaseRef.child("wantHelp_user").child(uuid).removeValue()
         
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "mainscreen") as! ViewController

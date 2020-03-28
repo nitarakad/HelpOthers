@@ -76,6 +76,9 @@ class SelectedUserViewController: UIViewController {
         updateWantToHelpUserDatabaseWithDelivered()
         updateWantHelpUserDatabaseWithDelivered()
         print("item at doorstep!")
+        
+        // TODO: make a button that takes you back to the original screen (ViewController)
+        // TODO: when user hits button to go back to original screen, it deletes their info
     }
     
     func updateWantToHelpUserDatabaseWithDelivered() {
@@ -157,7 +160,9 @@ class SelectedUserViewController: UIViewController {
                         let helpWith = allInfo["want_help_with"],
                             let timeOfDelivery = allInfo["time_of_delivery"],
                                 let listOfItems = allInfo["list_of_items"],
-                                    let address = allInfo["address"] else {
+                                    let address = allInfo["address"],
+                                        let latitude = allInfo["latitude"],
+                                            let longitude = allInfo["longitude"] else {
                 print("selected user not found")
                 return
             }
@@ -167,7 +172,9 @@ class SelectedUserViewController: UIViewController {
                                     "time_of_delivery" : timeOfDelivery,
                                     "address" : address,
                                     "helper_paired_uuid" : WantToHelpViewController.userUUID,
-                                    "status" : SelectedUserViewController.currentStatus]
+                                    "status" : SelectedUserViewController.currentStatus,
+                                    "latitude" : latitude,
+                                    "longitude" : longitude]
             
             let updateWithHelperPaired = ["/wantHelp_user/\(uuid)" : addHelperPaired]
 
