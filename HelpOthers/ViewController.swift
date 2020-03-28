@@ -21,13 +21,46 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        let buttonBackgroundNormal = UIImage(named: "regular_button_bkgd")
+        let buttonBackgroundClicked = UIImage(named: "regular_button_clicked_bkgd")
+        
+        let bigStar = UIImage(named: "big_star")
+        let smallStar = UIImage(named: "small_star")
+        let smallerStar = UIImage(named: "smaller_star")
+        
+        let bigStarImageView = UIImageView(image: bigStar)
+        let smallStarImageView = UIImageView(image: smallStar)
+        let smallerStarImageView = UIImageView(image: smallerStar)
+        view.addSubview(bigStarImageView)
+        view.addSubview(smallStarImageView)
+        view.addSubview(smallerStarImageView)
+        
+        bigStarImageView.translatesAutoresizingMaskIntoConstraints = false
+        bigStarImageView.bottomAnchor.constraint(equalTo: view.topAnchor, constant: 400).isActive = true
+        bigStarImageView.rightAnchor.constraint(equalTo: view.leftAnchor, constant: 300).isActive = true
+        bigStarImageView.widthAnchor.constraint(equalToConstant: 500).isActive = true
+        bigStarImageView.heightAnchor.constraint(equalToConstant: 500).isActive = true
+
+        smallStarImageView.translatesAutoresizingMaskIntoConstraints = false
+        smallStarImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80).isActive = true
+        smallStarImageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 250).isActive = true
+        smallStarImageView.widthAnchor.constraint(equalToConstant: 260).isActive = true
+        smallStarImageView.heightAnchor.constraint(equalToConstant: 234).isActive = true
+        
+        smallerStarImageView.translatesAutoresizingMaskIntoConstraints = false
+        smallerStarImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 250).isActive = true
+        smallerStarImageView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 190).isActive = true
+        smallerStarImageView.widthAnchor.constraint(equalToConstant: 116).isActive = true
+        smallerStarImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        
         // welcome label auto layout
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
         welcomeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        welcomeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
-        welcomeLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        welcomeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 160).isActive = true
+        welcomeLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
         welcomeLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
         welcomeLabel.textAlignment = .center
+        welcomeLabel.font = UIFont.systemFont(ofSize: 55)
         
         // selectEither label auto layout
         selectEitherLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -41,15 +74,23 @@ class ViewController: UIViewController {
         wantHelpButton.translatesAutoresizingMaskIntoConstraints = false
         wantHelpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         wantHelpButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 400).isActive = true
-        wantHelpButton.widthAnchor.constraint(equalToConstant: 400).isActive = true
-        wantHelpButton.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        wantHelpButton.widthAnchor.constraint(equalToConstant: 240).isActive = true
+        wantHelpButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        wantHelpButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        wantHelpButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        wantHelpButton.titleLabel?.textAlignment = .center
+        wantHelpButton.titleLabel?.adjustsFontSizeToFitWidth = true
         
         // wantToHelp button auto layout
         wantToHelpButton.translatesAutoresizingMaskIntoConstraints = false
         wantToHelpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         wantToHelpButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 500).isActive = true
-        wantToHelpButton.widthAnchor.constraint(equalToConstant: 400).isActive = true
-        wantToHelpButton.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        wantToHelpButton.widthAnchor.constraint(equalToConstant: 240).isActive = true
+        wantToHelpButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        wantToHelpButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        wantToHelpButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        wantToHelpButton.titleLabel?.textAlignment = .center
+        wantToHelpButton.titleLabel?.adjustsFontSizeToFitWidth = true
     }
     
     @IBAction func toWantHelpScreen(_ sender: Any) {
