@@ -45,6 +45,9 @@ class WantToHelpViewController: UIViewController {
         
         databaseRef = Database.database().reference()
         
+        let buttonBackgroundNormal = UIImage(named: "regular_button_bkgd")
+        let buttonBackgroundNormalClicked = UIImage(named: "regular_button_clicked_bkgd")
+        
         /* AUTO LAYOUT */
         // hello button
         helloLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -71,13 +74,18 @@ class WantToHelpViewController: UIViewController {
         nameInputField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         nameInputField.textAlignment = .center
         nameInputField.adjustsFontSizeToFitWidth = true
+        nameInputField.layer.borderColor = CGColor(srgbRed: 58/255, green: 193/255, blue: 236/255, alpha: 1.0)
+        nameInputField.layer.borderWidth = 2.0
+        nameInputField.adjustsFontSizeToFitWidth = true
         
         // lets go button
         startHelpButton.translatesAutoresizingMaskIntoConstraints = false
         startHelpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         startHelpButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 430).isActive = true
-        startHelpButton.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        startHelpButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        startHelpButton.widthAnchor.constraint(equalToConstant: 240).isActive = true
+        startHelpButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        startHelpButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        startHelpButton.setBackgroundImage(buttonBackgroundNormalClicked, for: .highlighted)
         startHelpButton.titleLabel?.textAlignment = .center
         startHelpButton.titleLabel?.adjustsFontSizeToFitWidth = true
         
