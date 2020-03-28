@@ -21,7 +21,6 @@ class TimeOfDeliveryViewController: UIViewController {
     @IBOutlet weak var nextTwoHoursButton: UIButton!
     @IBOutlet weak var nextThreeHoursButton: UIButton!
     @IBOutlet weak var nextFourHoursButton: UIButton!
-    
     @IBOutlet weak var submitButton: UIButton!
     
     static var address = ""
@@ -86,17 +85,22 @@ class TimeOfDeliveryViewController: UIViewController {
         self.searchResultsTableView.isHidden = true
         submitButton.isHidden = true
         
-        let widthForHourButtons = CGFloat(150.0)
-        let heightForHourButtons = CGFloat(60.0)
+        let widthForHourButtons = CGFloat(170.0)
+        let heightForHourButtons = CGFloat(40.0)
         
-        let closeLeftAnchorConstant = CGFloat(20.0)
+        let closeLeftAnchorConstant = CGFloat(5.0)
         let farLeftAnchorConstant = CGFloat(200.0)
+        
+        let buttonBackgroundNormal = UIImage(named: "regular_button_bkgd")
+        let buttonBackgroundClicked = UIImage(named: "time_button_clicked")
+        let transitionButtonNormal = UIImage(named: "transition_button_bkgd")
+        let transitionButtonClicked = UIImage(named: "transition_button_clicked_bkgd")
         
         /* AUTO LAYOUT */
         // time of delivery label
         timeOfDeliveryLabel.translatesAutoresizingMaskIntoConstraints = false
         timeOfDeliveryLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        timeOfDeliveryLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        timeOfDeliveryLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
         timeOfDeliveryLabel.widthAnchor.constraint(equalToConstant: 400).isActive = true
         timeOfDeliveryLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
         timeOfDeliveryLabel.textAlignment = .center
@@ -104,42 +108,62 @@ class TimeOfDeliveryViewController: UIViewController {
         // time buttons
         asapButton.translatesAutoresizingMaskIntoConstraints = false
         asapButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        asapButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
-        asapButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        asapButton.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        asapButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 130).isActive = true
+        asapButton.widthAnchor.constraint(equalToConstant: 90).isActive = true
+        asapButton.heightAnchor.constraint(equalToConstant: heightForHourButtons).isActive = true
         asapButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        asapButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        asapButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        asapButton.setTitleColor(UIColor(red: 227/255, green: 227/255, blue: 1.0, alpha: 1.0), for: .normal)
         
         nextHourButton.translatesAutoresizingMaskIntoConstraints = false
-        nextHourButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 150).isActive = true
+        nextHourButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 180).isActive = true
         nextHourButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: closeLeftAnchorConstant).isActive = true
         nextHourButton.widthAnchor.constraint(equalToConstant: widthForHourButtons).isActive = true
         nextHourButton.heightAnchor.constraint(equalToConstant: heightForHourButtons).isActive = true
         nextHourButton.titleLabel?.adjustsFontSizeToFitWidth = true
         nextHourButton.titleLabel?.lineBreakMode = .byClipping
+        nextHourButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextHourButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        nextHourButton.setTitleColor(UIColor(red: 227/255, green: 227/255, blue: 1.0, alpha: 1.0), for: .normal)
+        nextHourButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         
         nextTwoHoursButton.translatesAutoresizingMaskIntoConstraints = false
-        nextTwoHoursButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 150).isActive = true
+        nextTwoHoursButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 180).isActive = true
         nextTwoHoursButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: farLeftAnchorConstant).isActive = true
         nextTwoHoursButton.widthAnchor.constraint(equalToConstant: widthForHourButtons).isActive = true
         nextTwoHoursButton.heightAnchor.constraint(equalToConstant: heightForHourButtons).isActive = true
         nextTwoHoursButton.titleLabel?.adjustsFontSizeToFitWidth = true
         nextTwoHoursButton.titleLabel?.lineBreakMode = .byClipping
+        nextTwoHoursButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextTwoHoursButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        nextTwoHoursButton.setTitleColor(UIColor(red: 227/255, green: 227/255, blue: 1.0, alpha: 1.0), for: .normal)
+        nextTwoHoursButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         
         nextThreeHoursButton.translatesAutoresizingMaskIntoConstraints = false
-        nextThreeHoursButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
+        nextThreeHoursButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 230).isActive = true
         nextThreeHoursButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: closeLeftAnchorConstant).isActive = true
         nextThreeHoursButton.widthAnchor.constraint(equalToConstant: widthForHourButtons).isActive = true
         nextThreeHoursButton.heightAnchor.constraint(equalToConstant: heightForHourButtons).isActive = true
         nextThreeHoursButton.titleLabel?.adjustsFontSizeToFitWidth = true
         nextThreeHoursButton.titleLabel?.lineBreakMode = .byClipping
+        nextThreeHoursButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextThreeHoursButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        nextThreeHoursButton.setTitleColor(UIColor(red: 227/255, green: 227/255, blue: 1.0, alpha: 1.0), for: .normal)
+        nextThreeHoursButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         
         nextFourHoursButton.translatesAutoresizingMaskIntoConstraints = false
-        nextFourHoursButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
+        nextFourHoursButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 230).isActive = true
         nextFourHoursButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: farLeftAnchorConstant).isActive = true
         nextFourHoursButton.widthAnchor.constraint(equalToConstant: widthForHourButtons).isActive = true
         nextFourHoursButton.heightAnchor.constraint(equalToConstant: heightForHourButtons).isActive = true
         nextFourHoursButton.titleLabel?.adjustsFontSizeToFitWidth = true
         nextFourHoursButton.titleLabel?.lineBreakMode = .byClipping
+        nextFourHoursButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextFourHoursButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        nextFourHoursButton.setTitleColor(UIColor(red: 227/255, green: 227/255, blue: 1.0, alpha: 1.0), for: .normal)
+        nextFourHoursButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+
         
         // address components
         inputAddressLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -161,12 +185,15 @@ class TimeOfDeliveryViewController: UIViewController {
         searchResultsTableView.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         submitButton.translatesAutoresizingMaskIntoConstraints = false
-        submitButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 400).isActive = true
-        submitButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 200).isActive = true
-        submitButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        submitButton.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        submitButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 430).isActive = true
+        submitButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 248).isActive = true
+        submitButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        submitButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         submitButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        submitButton.titleLabel?.lineBreakMode = .byClipping
+        submitButton.setBackgroundImage(transitionButtonNormal, for: .normal)
+        submitButton.setBackgroundImage(transitionButtonClicked, for: .highlighted)
+        submitButton.titleLabel?.textAlignment = .center
+        submitButton.setTitleColor(UIColor(red: 232/255, green: 232/255, blue: 232/255, alpha: 1.0), for: .normal)
         
     }
     
@@ -174,81 +201,122 @@ class TimeOfDeliveryViewController: UIViewController {
         print("user wants groceries asap")
         updateDatabaseWithTODOf(timeOfDelivery: "ASAP")
         
-        asapButton.setTitleColor(UIColor.gray, for: .normal)
-        nextHourButton.setTitleColor(buttonColor, for: .normal)
-        nextTwoHoursButton.setTitleColor(buttonColor, for: .normal)
-        nextThreeHoursButton.setTitleColor(buttonColor, for: .normal)
-        nextFourHoursButton.setTitleColor(buttonColor, for: .normal)
+        let buttonBackgroundNormal = UIImage(named: "regular_button_bkgd")
+        let buttonBackgroundClicked = UIImage(named: "time_button_clicked")
+
+        asapButton.setBackgroundImage(buttonBackgroundClicked, for: .normal)
+        asapButton.setBackgroundImage(buttonBackgroundNormal, for: .highlighted)
+        nextHourButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextHourButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        nextTwoHoursButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextTwoHoursButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        nextThreeHoursButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextThreeHoursButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        nextFourHoursButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextFourHoursButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
     }
     
     @IBAction func nextHourClicked(_ sender: Any) {
         print("user wants groceries in next hour")
         updateDatabaseWithTODOf(timeOfDelivery: "next_hour")
         
-        asapButton.setTitleColor(buttonColor, for: .normal)
-        nextHourButton.setTitleColor(UIColor.gray, for: .normal)
-        nextTwoHoursButton.setTitleColor(buttonColor, for: .normal)
-        nextThreeHoursButton.setTitleColor(buttonColor, for: .normal)
-        nextFourHoursButton.setTitleColor(buttonColor, for: .normal)
+        let buttonBackgroundNormal = UIImage(named: "regular_button_bkgd")
+        let buttonBackgroundClicked = UIImage(named: "time_button_clicked")
+
+        asapButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        asapButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextHourButton.setBackgroundImage(buttonBackgroundNormal, for: .highlighted)
+        nextHourButton.setBackgroundImage(buttonBackgroundClicked, for: .normal)
+        nextTwoHoursButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextTwoHoursButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        nextThreeHoursButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextThreeHoursButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        nextFourHoursButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextFourHoursButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
     }
     
     @IBAction func nextTwoHoursClicked(_ sender: Any) {
         print("user wants groceries in next two hours")
         updateDatabaseWithTODOf(timeOfDelivery: "next_two_hours")
         
-        asapButton.setTitleColor(buttonColor, for: .normal)
-        nextHourButton.setTitleColor(buttonColor, for: .normal)
-        nextTwoHoursButton.setTitleColor(UIColor.gray, for: .normal)
-        nextThreeHoursButton.setTitleColor(buttonColor, for: .normal)
-        nextFourHoursButton.setTitleColor(buttonColor, for: .normal)
+        let buttonBackgroundNormal = UIImage(named: "regular_button_bkgd")
+        let buttonBackgroundClicked = UIImage(named: "time_button_clicked")
+
+        asapButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        asapButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextHourButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextHourButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        nextTwoHoursButton.setBackgroundImage(buttonBackgroundNormal, for: .highlighted)
+        nextTwoHoursButton.setBackgroundImage(buttonBackgroundClicked, for: .normal)
+        nextThreeHoursButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextThreeHoursButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        nextFourHoursButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextFourHoursButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
     }
     
     @IBAction func nextThreeHoursClicked(_ sender: Any) {
         print("user wants groceries in next three hours")
         updateDatabaseWithTODOf(timeOfDelivery: "next_three_hours")
         
-        asapButton.setTitleColor(buttonColor, for: .normal)
-        nextHourButton.setTitleColor(buttonColor, for: .normal)
-        nextTwoHoursButton.setTitleColor(buttonColor, for: .normal)
-        nextThreeHoursButton.setTitleColor(UIColor.gray, for: .normal)
-        nextFourHoursButton.setTitleColor(buttonColor, for: .normal)
+        let buttonBackgroundNormal = UIImage(named: "regular_button_bkgd")
+        let buttonBackgroundClicked = UIImage(named: "time_button_clicked")
+
+        asapButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        asapButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextHourButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextHourButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        nextTwoHoursButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextTwoHoursButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        nextThreeHoursButton.setBackgroundImage(buttonBackgroundNormal, for: .highlighted)
+        nextThreeHoursButton.setBackgroundImage(buttonBackgroundClicked, for: .normal)
+        nextFourHoursButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextFourHoursButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
     }
     
     @IBAction func nextFourHoursClicked(_ sender: Any) {
         print("user wants groceries in next four hours")
         updateDatabaseWithTODOf(timeOfDelivery: "next_four_hours")
         
-        asapButton.setTitleColor(buttonColor, for: .normal)
-        nextHourButton.setTitleColor(buttonColor, for: .normal)
-        nextTwoHoursButton.setTitleColor(buttonColor, for: .normal)
-        nextThreeHoursButton.setTitleColor(buttonColor, for: .normal)
-        nextFourHoursButton.setTitleColor(UIColor.gray, for: .normal)
+        let buttonBackgroundNormal = UIImage(named: "regular_button_bkgd")
+        let buttonBackgroundClicked = UIImage(named: "time_button_clicked")
+
+        asapButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        asapButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextHourButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextHourButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        nextTwoHoursButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextTwoHoursButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        nextThreeHoursButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        nextThreeHoursButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        nextFourHoursButton.setBackgroundImage(buttonBackgroundNormal, for: .highlighted)
+        nextFourHoursButton.setBackgroundImage(buttonBackgroundClicked, for: .normal)
     }
     
     @IBAction func submitButtonClicked(_ sender: Any) {
+        
         var listOfItems = ""
         if WantHelpViewController.helpWith == "groceries" {
             listOfItems = ListGroceriesViewController.listOfGroceries
         } else {
             listOfItems = ListPrescriptionViewController.listOfPrescriptions
         }
-        
+    
         let addAddressAndCoord = ["username" : WantHelpViewController.userName,
-                                "want_help_with" : WantHelpViewController.helpWith,
-                                "list_of_items" : listOfItems,
-                                "time_of_delivery" : TimeOfDeliveryViewController.TOD,
-                                "address" : TimeOfDeliveryViewController.address,
-                                "latitude" : TimeOfDeliveryViewController.latitude,
-                                "longitude" : TimeOfDeliveryViewController.longitude]
-        
+                                    "want_help_with" : WantHelpViewController.helpWith,
+                                    "list_of_items" : listOfItems,
+                                    "time_of_delivery" : TimeOfDeliveryViewController.TOD,
+                                    "address" : TimeOfDeliveryViewController.address,
+                                    "latitude" : TimeOfDeliveryViewController.latitude,
+                                    "longitude" : TimeOfDeliveryViewController.longitude]
+    
         let updateAddressAndCoord = ["/wantHelp_user/\(WantHelpViewController.userUUID)" : addAddressAndCoord]
-        
+    
         self.databaseRef.updateChildValues(updateAddressAndCoord)
-        
+    
         print("updated with address of user wanting help")
-        
+    
         print("user submitted")
-        
+    
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "helperpairedload") as! HelperPairedLoadViewController
         newViewController.modalPresentationStyle = .fullScreen
@@ -288,9 +356,20 @@ extension TimeOfDeliveryViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.view.endEditing(true)
-        submitButton.isHidden = false
-        self.searchResultsTableView.isHidden = true
+        
+        if (searchResults.count != 0) {
+            print("user did not input an address from the table")
+            
+            let alertController = UIAlertController(title: "Invalid Address", message:
+                "Select address from table displayed!", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+            self.view.endEditing(true)
+            submitButton.isHidden = false
+            self.searchResultsTableView.isHidden = true
+        }
     }
     
 }
