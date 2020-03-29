@@ -29,7 +29,22 @@ class ListUsersHelpViewController: UIViewController {
         print("**in list: latitude \(WantToHelpViewController.latitude)")
         print("**in list: longitude \(WantToHelpViewController.longitude)")
         
+        /* AUTO LAYOUT */
+        // select below label
+        listLabel.translatesAutoresizingMaskIntoConstraints = false
+        listLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        listLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        listLabel.widthAnchor.constraint(equalToConstant: 400).isActive = true
+        listLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        listLabel.textAlignment = .center
+        
         buttonsUUID = Dictionary<UIButton, String>()
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true;
+        scrollView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 200).isActive = true;
+        scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true;
+        scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true;
         
         retrieveAndShowUsers()
     }
@@ -42,31 +57,76 @@ class ListUsersHelpViewController: UIViewController {
         
         ListUsersHelpViewController.buttonSelectedName = name
         
+        
         guard let uuid = buttonsUUID[sender] else {
             print("no uuid")
             return
         }
         
         ListUsersHelpViewController.buttonSelectedUUID = uuid
-        print("selected user to help")
         
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "selecteduser") as! SelectedUserViewController
-        newViewController.modalPresentationStyle = .fullScreen
-        self.present(newViewController, animated: true, completion: nil)
+        databaseRef.child("wantHelp_user").child(uuid).observeSingleEvent(of: .value) { (snapshot) in
+            let allInfo = snapshot.value as! Dictionary<String, String>
+            
+            // in alert, want to display what they need, time, and address
+            guard let name = allInfo["username"],
+                let address = allInfo["address"],
+                let helpWith = allInfo["want_help_with"],
+                let timeOfDelivery = allInfo["time_of_delivery"] else {
+                    print(" incorrect format in firebase ")
+                    return
+            }
+            
+            var TOD = ""
+            if timeOfDelivery == "ASAP" {
+                TOD = "ASAP"
+            } else if timeOfDelivery == "next_hour" {
+                TOD = "In 1 hour"
+            } else if timeOfDelivery == "next_two_hours" {
+                TOD = "In 2 hours"
+            } else if timeOfDelivery == "next_three_hours" {
+                TOD = "In 3 hours"
+            } else if timeOfDelivery == "next_four_hours" {
+                TOD = "In 4 hours"
+            } else {
+                TOD = "unknown"
+            }
+            
+            var helpWithCapital = ""
+            if helpWith == "groceries" {
+                helpWithCapital = "Groceries"
+            } else if helpWith == "prescription" {
+                helpWithCapital = "Prescription"
+            }
+            
+            let alertMessage = "Help with: \(helpWithCapital)\nTime of Delivery: \(TOD)\nAddress: \(address)"
+            
+            let alertController = UIAlertController(title: name, message:
+                alertMessage, preferredStyle: .alert)
+            let selectUserAction = UIAlertAction(title: "Select", style: .default) { (action) in
+                
+                print("selected user to help")
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let newViewController = storyBoard.instantiateViewController(withIdentifier: "selecteduser") as! SelectedUserViewController
+                newViewController.modalPresentationStyle = .fullScreen
+                self.present(newViewController, animated: true, completion: nil)
+                
+            }
+            let chooseAnotherAction = UIAlertAction(title: "Dismiss", style: .default)
+            
+            alertController.addAction(chooseAnotherAction)
+            alertController.addAction(selectUserAction)
+
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
     
     func retrieveAndShowUsers() {
-        
         let usersWantHelp = databaseRef.observe(.value) { (snapshot) in
             let allUsers = snapshot.value as? [String: AnyObject] ?? [:]
             let usersWantHelp = allUsers["wantHelp_user"] as! Dictionary<String, Dictionary<String, String>>
             var userUIDs = Array<String>()
             var usernames = Dictionary<String, String>()
-            var addresses = Dictionary<String, String>()
-            var listItems = Dictionary<String, String>()
-            var helpWiths = Dictionary<String, String>()
-            var timeOfDeliveries = Dictionary<String, String>()
             for userInfo in usersWantHelp {
                 let currUID = userInfo.key
                 
@@ -80,26 +140,6 @@ class ListUsersHelpViewController: UIViewController {
                     return
                 }
                 
-                guard let wantHelpWith = info["want_help_with"] else {
-                    print("no category of help saved")
-                    return
-                }
-                
-                guard let listOfItems = info["list_of_items"] else {
-                    print("no list of items needed saved")
-                    return
-                }
-                
-                guard let timeOfDelivery = info["time_of_delivery"] else {
-                    print("no time of delivery saved")
-                    return
-                }
-                
-                guard let address = info["address"] else {
-                    print("no address saved")
-                    return
-                }
-                
                 guard let latitude = info["latitude"] else {
                     print("no latitude")
                     return
@@ -109,27 +149,8 @@ class ListUsersHelpViewController: UIViewController {
                     print("no longitude")
                     return
                 }
-                
-                var TOD = ""
-                if timeOfDelivery == "ASAP" {
-                    TOD = "ASAP"
-                } else if timeOfDelivery == "next_hour" {
-                    TOD = "In 1 hour"
-                } else if timeOfDelivery == "next_two_hours" {
-                    TOD = "In 2 hours"
-                } else if timeOfDelivery == "next_three_hours" {
-                    TOD = "In 3 hours"
-                } else if timeOfDelivery == "next_four_hours" {
-                    TOD = "In 4 hours"
-                } else {
-                    TOD = "unknown"
-                }
-                
+
                 usernames[currUID] = username
-                helpWiths[currUID] = wantHelpWith
-                listItems[currUID] = listOfItems
-                timeOfDeliveries[currUID] = TOD
-                addresses[currUID] = address
                 
                 guard let latitudeWantToHelp = Double(WantToHelpViewController.latitude), let longitudeWantToHelp = Double(WantToHelpViewController.longitude) else {
                     print("invalid coordinates for want to help user")
@@ -154,6 +175,7 @@ class ListUsersHelpViewController: UIViewController {
             
             var currY = self.scrollView.bounds.origin.y + 50
             let currX = self.scrollView.bounds.minX
+            var constantOfTopAnchor = 0.0
             
             var currentlyBeingHelpedUUID = [String]()
             let beingHelped = allUsers["users_being_helped"]
@@ -166,54 +188,33 @@ class ListUsersHelpViewController: UIViewController {
                 }
             }
             
+            let buttonBackgroundNormal = UIImage(named: "regular_button_bkgd")
+            let buttonBackgroundClicked = UIImage(named: "regular_button_clicked_bkgd")
+            
             for uid in userUIDs {
                 if (!currentlyBeingHelpedUUID.contains(uid)) {
-                    let currButton = UIButton()
-                    currButton.frame = CGRect(x: currX, y: currY, width: self.view.frame.width, height: 60)
-                    currButton.setTitle("\(usernames[uid]!): ", for: .normal)
-                    currButton.setTitleColor(UIColor.systemBlue, for: .normal)
+                    print("**constant: \(constantOfTopAnchor)")
+                    let frame = CGRect(x: currX, y: currY, width: 120.0, height: 50.0)
+                    let currButton = UIButton(frame: frame)
+                    currButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+                    currButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+                    currButton.setTitleColor(UIColor(red: 227/255, green: 227/255, blue: 1.0, alpha: 1.0), for: .normal)
+                    self.scrollView.addSubview(currButton)
+                    currButton.translatesAutoresizingMaskIntoConstraints = false
+                    currButton.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor).isActive = true
+                    currButton.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: CGFloat(constantOfTopAnchor)).isActive = true
+                    currButton.setTitle("\(usernames[uid]!)", for: .normal)
                     currButton.titleLabel?.font = UIFont.systemFont(ofSize: 40)
+                    currButton.titleLabel?.adjustsFontSizeToFitWidth = true
+                    currButton.titleLabel?.textAlignment = .center
                     currButton.addTarget(self, action: #selector(self.buttonClicked(sender:)), for: .touchUpInside)
                     self.buttonsUUID[currButton] = uid
                 
-                    self.scrollView.addSubview(currButton)
-                
-                    currY = currY + 70
-                    let helpWithLabel = UILabel()
-                    helpWithLabel.frame = CGRect(x: currX, y: currY, width: self.view.frame.width, height: 60)
-                    helpWithLabel.text = "Help With: \(helpWiths[uid]!)"
-                    helpWithLabel.textColor = UIColor.systemGray
-                    helpWithLabel.font = UIFont.systemFont(ofSize: 30)
-                    helpWithLabel.center.x = self.scrollView.center.x
-                    self.scrollView.addSubview(helpWithLabel)
-                
-                    currY = currY + 70
-                    let TODLabel = UILabel()
-                    TODLabel.frame = CGRect(x: currX, y: currY, width: self.view.frame.width, height: 60)
-                    TODLabel.text = "Time: \(timeOfDeliveries[uid]!)"
-                    TODLabel.textColor = UIColor.systemGray
-                    TODLabel.font = UIFont.systemFont(ofSize: 30)
-                    TODLabel.center.x = self.scrollView.center.x
-                    self.scrollView.addSubview(TODLabel)
-                
-                    currY = currY + 70
-                    let addressLabel = UILabel()
-                    addressLabel.frame = CGRect(x: currX, y: currY, width: self.view.frame.width, height: 100)
-                    addressLabel.text = "Address: \(addresses[uid]!)"
-                    addressLabel.lineBreakMode = .byWordWrapping
-                    addressLabel.numberOfLines = 0
-                    addressLabel.textColor = UIColor.systemGray
-                    addressLabel.font = UIFont.systemFont(ofSize: 30)
-                    addressLabel.center.x = self.scrollView.center.x
-                    self.scrollView.addSubview(addressLabel)
-                
+                    constantOfTopAnchor = constantOfTopAnchor + 120.0
                     currY = currY + 100
                 }
             }
-            
-            self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: currY + 100)
-            self.view.addSubview(self.scrollView)
-            
+            self.scrollView.contentSize.height = currY + 50.0
         }
     }
 }
