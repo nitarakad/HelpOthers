@@ -334,7 +334,7 @@
                                 <rect key="frame" x="20" y="738" width="350" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                <state key="normal" title="Return to Main Screen"/>
+                                <state key="normal" title="Back to Main Screen"/>
                                 <connections>
                                     <action selector="mainScreenButtonClicked:" destination="NPE-yA-qE1" eventType="touchUpInside" id="ujP-HP-iWk"/>
                                 </connections>
