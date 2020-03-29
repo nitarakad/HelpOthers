@@ -13,6 +13,8 @@ import Firebase
 class HelperPairedViewController: UIViewController {
     
     @IBOutlet weak var nameOfHelperLabel: UILabel!
+    @IBOutlet weak var helpingYouLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var updateLabel: UILabel!
     @IBOutlet weak var mainScreenButton: UIButton!
     
@@ -25,11 +27,58 @@ class HelperPairedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        databaseRef = Database.database().reference()
+        let buttonBackgroundNormal = UIImage(named: "regular_button_bkgd")
+        let buttonBackgroundClicked = UIImage(named: "regular_button_clicked_bkgd")
         
+        databaseRef = Database.database().reference()
         
         mainScreenButton.isEnabled = false
         mainScreenButton.isHidden = true
+        
+        /* AUTO LAYOUT */
+        nameOfHelperLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameOfHelperLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        nameOfHelperLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        nameOfHelperLabel.widthAnchor.constraint(equalToConstant: 400).isActive = true
+        nameOfHelperLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        nameOfHelperLabel.textAlignment = .center
+        nameOfHelperLabel.adjustsFontSizeToFitWidth = true
+        
+        helpingYouLabel.translatesAutoresizingMaskIntoConstraints = false
+        helpingYouLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        helpingYouLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 140).isActive = true
+        helpingYouLabel.widthAnchor.constraint(equalToConstant: 400).isActive = true
+        helpingYouLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        helpingYouLabel.textAlignment = .center
+        helpingYouLabel.adjustsFontSizeToFitWidth = true
+        
+        statusLabel.translatesAutoresizingMaskIntoConstraints = false
+        statusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        statusLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -25).isActive = true
+        statusLabel.widthAnchor.constraint(equalToConstant: 400).isActive = true
+        statusLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        statusLabel.textAlignment = .center
+        statusLabel.adjustsFontSizeToFitWidth = true
+        
+        updateLabel.translatesAutoresizingMaskIntoConstraints = false
+        updateLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        updateLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 25).isActive = true
+        updateLabel.widthAnchor.constraint(equalToConstant: 400).isActive = true
+        updateLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        updateLabel.textAlignment = .center
+        updateLabel.adjustsFontSizeToFitWidth = true
+        
+        mainScreenButton.translatesAutoresizingMaskIntoConstraints = false
+        mainScreenButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        mainScreenButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 660).isActive = true
+        mainScreenButton.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        mainScreenButton.heightAnchor.constraint(equalToConstant: 90).isActive = true
+        mainScreenButton.titleLabel?.textAlignment = .center
+        mainScreenButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        mainScreenButton.isHidden = true
+        mainScreenButton.setBackgroundImage(buttonBackgroundNormal, for: .normal)
+        mainScreenButton.setBackgroundImage(buttonBackgroundClicked, for: .highlighted)
+        mainScreenButton.setTitleColor(UIColor(red: 227/255, green: 227/255, blue: 1.0, alpha: 1.0), for: .normal)
         
         setNameOfHelperWithDatabase()
         

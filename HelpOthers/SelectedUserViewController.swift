@@ -156,7 +156,7 @@ class SelectedUserViewController: UIViewController {
     }
     
     @IBAction func retrievedButtonClicked(_ sender: Any) {
-        SelectedUserViewController.currentStatus = "retrieved"
+        //SelectedUserViewController.currentStatus = "retrieved"
         updateWantToHelpUserDatabaseWithRetrieved()
         updateHelpUserDatabaseWithRetrieved()
         print("items retreived!")
@@ -167,7 +167,7 @@ class SelectedUserViewController: UIViewController {
     }
     
     @IBAction func readyButtonClicked(_ sender: Any) {
-        SelectedUserViewController.currentStatus = "delivered"
+        //SelectedUserViewController.currentStatus = "delivered"
         updateWantToHelpUserDatabaseWithDelivered()
         updateWantHelpUserDatabaseWithDelivered()
         print("item at doorstep!")
@@ -191,7 +191,7 @@ class SelectedUserViewController: UIViewController {
     func updateWantToHelpUserDatabaseWithDelivered() {
         let addStatus = ["username" : WantToHelpViewController.userName,
                          "user_selected_uuid" : ListUsersHelpViewController.buttonSelectedUUID,
-                         "status" : SelectedUserViewController.currentStatus]
+                         "status" : "delivered"]
         
         let updateWithStatus = ["/wantToHelp_user/\(WantToHelpViewController.userUUID)" : addStatus]
         
@@ -210,7 +210,7 @@ class SelectedUserViewController: UIViewController {
                        return
                    }
                    
-                   self.databaseRef.child("wantHelp_user").child(uuid).updateChildValues(["status" : SelectedUserViewController.currentStatus])
+                   self.databaseRef.child("wantHelp_user").child(uuid).updateChildValues(["status" : "delivered"])
                    print("**updated database with status delivered (WANT HELP USER)**")
                }
     }
@@ -218,7 +218,7 @@ class SelectedUserViewController: UIViewController {
     func updateWantToHelpUserDatabaseWithRetrieved() {
         let addStatus = ["username" : WantToHelpViewController.userName,
                          "user_selected_uuid" : ListUsersHelpViewController.buttonSelectedUUID,
-                         "status" : SelectedUserViewController.currentStatus]
+                         "status" : "retrieved"]
         
         let updateWithStatus = ["/wantToHelp_user/\(WantToHelpViewController.userUUID)" : addStatus]
         
@@ -237,7 +237,7 @@ class SelectedUserViewController: UIViewController {
                 return
             }
             
-            self.databaseRef.child("wantHelp_user").child(uuid).updateChildValues(["status" : SelectedUserViewController.currentStatus])
+            self.databaseRef.child("wantHelp_user").child(uuid).updateChildValues(["status" : "retrieved"])
             print("**updated database with status retrieved (WANT HELP USER)**")
         }
     }
@@ -245,7 +245,7 @@ class SelectedUserViewController: UIViewController {
     func updateWantToHelpUserDatabaseWithUserSelected() {
         let addUserSelected = ["username" : WantToHelpViewController.userName,
                                "user_selected_uuid" : ListUsersHelpViewController.buttonSelectedUUID,
-                               "status" : SelectedUserViewController.currentStatus]
+                               "status" : "none"]
         
         let updateWithUserSelected = ["/wantToHelp_user/\(WantToHelpViewController.userUUID)" : addUserSelected]
         
@@ -279,7 +279,7 @@ class SelectedUserViewController: UIViewController {
                                     "time_of_delivery" : timeOfDelivery,
                                     "address" : address,
                                     "helper_paired_uuid" : WantToHelpViewController.userUUID,
-                                    "status" : SelectedUserViewController.currentStatus,
+                                    "status" : "none",
                                     "latitude" : latitude,
                                     "longitude" : longitude]
             

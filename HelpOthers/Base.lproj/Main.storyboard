@@ -632,8 +632,10 @@
                         <viewLayoutGuide key="safeArea" id="kgn-5J-m3z"/>
                     </view>
                     <connections>
+                        <outlet property="helpingYouLabel" destination="ne7-q0-1Pl" id="LUa-zh-OT9"/>
                         <outlet property="mainScreenButton" destination="xeC-7W-mst" id="LWj-Rk-6zg"/>
                         <outlet property="nameOfHelperLabel" destination="ASx-NP-VYK" id="7YV-C8-Mb2"/>
+                        <outlet property="statusLabel" destination="UA4-qk-fMP" id="YzT-oD-rxg"/>
                         <outlet property="updateLabel" destination="q3k-Yk-sL7" id="uzh-YI-yVd"/>
                     </connections>
                 </viewController>
