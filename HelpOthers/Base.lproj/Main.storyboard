@@ -291,21 +291,21 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QNI-tD-M6n">
-                                <rect key="frame" x="20" y="156" width="328" height="71"/>
+                                <rect key="frame" x="20" y="146" width="328" height="71"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="List of Items:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPy-hd-nXA">
-                                <rect key="frame" x="20" y="241" width="328" height="71"/>
+                                <rect key="frame" x="20" y="230" width="328" height="71"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yTl-PJ-9ZE">
-                                <rect key="frame" x="20" y="315" width="328" height="217"/>
+                                <rect key="frame" x="20" y="293" width="328" height="217"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -313,7 +313,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXX-31-zqY">
-                                <rect key="frame" x="54" y="546" width="261" height="60"/>
+                                <rect key="frame" x="54" y="602" width="261" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <state key="normal" title="Obtained Items"/>
@@ -322,33 +322,43 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7v-XO-NxO">
-                                <rect key="frame" x="26" y="614" width="317" height="60"/>
+                                <rect key="frame" x="53" y="670" width="263" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <state key="normal" title="Items At Doorstep!"/>
+                                <state key="normal" title="Items Delivered"/>
                                 <connections>
                                     <action selector="readyButtonClicked:" destination="NPE-yA-qE1" eventType="touchUpInside" id="AiB-tq-s73"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWK-d3-udd">
-                                <rect key="frame" x="20" y="682" width="350" height="68"/>
+                                <rect key="frame" x="20" y="738" width="350" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                <state key="normal" title="Return to Main Screen!"/>
+                                <state key="normal" title="Return to Main Screen"/>
                                 <connections>
                                     <action selector="mainScreenButtonClicked:" destination="NPE-yA-qE1" eventType="touchUpInside" id="ujP-HP-iWk"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVQ-Ra-C4U">
+                                <rect key="frame" x="20" y="502" width="328" height="106"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="FlF-NX-4lP"/>
                     </view>
                     <connections>
+                        <outlet property="addressLabel" destination="hVQ-Ra-C4U" id="Sn7-Ir-vFq"/>
                         <outlet property="itemsTextView" destination="yTl-PJ-9ZE" id="asr-GN-HqT"/>
+                        <outlet property="listItemsLabel" destination="pPy-hd-nXA" id="vI8-kI-Lme"/>
                         <outlet property="nameLabel" destination="QNI-tD-M6n" id="Fl2-GH-UVq"/>
                         <outlet property="readyButton" destination="c7v-XO-NxO" id="Doi-vU-duh"/>
                         <outlet property="retrievedButton" destination="FXX-31-zqY" id="cZz-Wk-XFF"/>
                         <outlet property="returnToMainScreen" destination="CWK-d3-udd" id="4IG-uA-qsz"/>
+                        <outlet property="thanksLabel" destination="66J-ln-VDp" id="kTT-AB-3Gk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IkY-Un-ml5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
